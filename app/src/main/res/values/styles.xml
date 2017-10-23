@@ -1,0 +1,44 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">#000000</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="MainMenuButtonStyle">
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">fill</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">44sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:onClick">calculus</item>
+    </style>
+
+    <style name="CalculusQuestionStyle">
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:textAlignment">viewEnd</item>
+        <item name="android:gravity">fill</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">60sp</item>
+    </style>
+
+    <style name="CalculusAnswerButtonStyle">
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:background">@color/coloBlack20</item>
+        <item name="android:gravity">fill</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:padding">@dimen/activity_horizontal_margin_m</item>
+        <item name="android:onClick">checkAnswer</item>
+    </style>
+</resources>
+
