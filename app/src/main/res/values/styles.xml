@@ -29,7 +29,7 @@
         <item name="android:textSize">60sp</item>
     </style>
 
-    <style name="CalculusAnswerButtonStyle">
+    <style name="CalculusButtonStyle">
         <item name="android:layout_columnWeight">1</item>
         <item name="android:layout_rowWeight">1</item>
         <item name="android:background">@color/coloBlack20</item>
@@ -38,6 +38,14 @@
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">30sp</item>
         <item name="android:padding">@dimen/activity_horizontal_margin_m</item>
+        <item name="android:onClick">checkAnswer</item>
+    </style>
+
+    <style name="CalculusLevelButtonStyle" parent="@style/CalculusButtonStyle">
+        <item name="android:onClick">setLevel</item>
+    </style>
+
+    <style name="CalculusAnswerButtonStyle" parent="@style/CalculusButtonStyle">
         <item name="android:onClick">checkAnswer</item>
     </style>
 </resources>

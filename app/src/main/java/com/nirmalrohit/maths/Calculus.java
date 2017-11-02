@@ -16,10 +16,12 @@ import java.util.Random;
 
 public class Calculus extends AppCompatActivity {
 
-    private final int MAX_INT_SMALL = 11;
-    private final int MAX_INT = 20;
+    private final int MAX_INT_SMALL_SUB = 5;
+    private final int MAX_INT_SMALL_MUL = 11;
     private final int MAX_ANS = 4;
     private final int MAX_Test = 4;
+
+    private int MAX_INT = 15;
 
     private int calculusType;
     private Random random;
@@ -51,6 +53,7 @@ public class Calculus extends AppCompatActivity {
     private Button btnNext;
 
     private GridLayout gridLayout;
+    private GridLayout gridLayoutLevel;
 
     private ArrayList<Integer> answers = new ArrayList<Integer>();
 
@@ -68,6 +71,9 @@ public class Calculus extends AppCompatActivity {
         random = new Random();
 
         relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
+        calculusLayout = (RelativeLayout) findViewById(R.id.relativeLayoutCalculus);
+        startGameLayout = (RelativeLayout) findViewById(R.id.relativeLayoutStartGame);
+
         heading = (TextView) findViewById(R.id.textViewHeading);
         textSymbol = (TextView) findViewById(R.id.text_symbol);
 
@@ -78,14 +84,12 @@ public class Calculus extends AppCompatActivity {
         viewScore = (TextView) findViewById(R.id.textViewScore);
 
         gridLayout = (GridLayout) findViewById(R.id.gridLayoutAnswers);
+        gridLayoutLevel = (GridLayout) findViewById(R.id.gridLayoutLevel);
 
         btnNext = (Button) findViewById(R.id.button_next);
 
         if (calculusType == 4) {
             isTest = true;
-
-            calculusLayout = (RelativeLayout) findViewById(R.id.relativeLayoutCalculus);
-            startGameLayout = (RelativeLayout) findViewById(R.id.relativeLayoutStartGame);
 
             textViewScoreLabel = (TextView) findViewById(R.id.textViewScoreLabel);
             textViewFinalScore = (TextView) findViewById(R.id.textViewFinalScore);
@@ -96,8 +100,6 @@ public class Calculus extends AppCompatActivity {
 
             viewTimer.setVisibility(View.VISIBLE);
             startGameLayout.setVisibility(View.VISIBLE);
-
-
 
         } else {
             isTest = false;
@@ -143,13 +145,13 @@ public class Calculus extends AppCompatActivity {
         if (calculusType == 0) {
             ans = firstNum + secondNum;
         } else if (calculusType == 1) {
-            if (firstNum < MAX_INT_SMALL) {
-                firstNum += MAX_INT_SMALL;
+            if (firstNum < MAX_INT_SMALL_SUB) {
+                firstNum += MAX_INT_SMALL_SUB;
             }
             secondNum = random.nextInt(firstNum);
             ans = firstNum - secondNum;
         } else if (calculusType == 2) {
-            secondNum = random.nextInt(MAX_INT_SMALL);
+            secondNum = random.nextInt(MAX_INT_SMALL_MUL);
             ans = firstNum * secondNum;
         } else if (calculusType == 3) {
 
@@ -265,21 +267,26 @@ public class Calculus extends AppCompatActivity {
 
     public void startGame (View view) {
 
-        totalCorrectAns = 0;
-        totalQuestion = 0;
-
         startGameLayout.setVisibility(View.GONE);
         calculusLayout.setVisibility(View.VISIBLE);
 
-        viewScore.setText(Integer.toString(totalCorrectAns) + "/" + Integer.toString(totalQuestion));
+        if (isTest == true) {
 
-        changeStyle();
-        createQuestion();
-        timer();
+            totalCorrectAns = 0;
+            totalQuestion = 0;
+
+            viewScore.setText(Integer.toString(totalCorrectAns) + "/" + Integer.toString(totalQuestion));
+
+            changeStyle();
+            createQuestion();
+            timer();
+        }
+
+
     }
 
     private void timer () {
-        new CountDownTimer(10100, 1000) {
+        new CountDownTimer(30100, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 viewTimer.setText(String.valueOf(millisUntilFinished / 1000) + "s");
@@ -298,6 +305,21 @@ public class Calculus extends AppCompatActivity {
 
             }
         }.start();
+    }
+
+    public void setLevel (View view) {
+        TextView textView = (TextView) view;
+
+        MAX_INT = Integer.parseInt( view.getTag().toString() );
+
+        int count = gridLayoutLevel.getChildCount();
+
+        for(int i = 0 ; i <count ; i++){
+            TextView child = (TextView) gridLayoutLevel.getChildAt(i);
+            child.setBackgroundColor(getResources().getColor(R.color.coloBlack20));
+        }
+
+        textView.setBackgroundColor(getResources().getColor(R.color.coloCorrectAns));
     }
 
 

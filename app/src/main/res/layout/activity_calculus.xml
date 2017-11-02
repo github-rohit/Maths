@@ -6,7 +6,7 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
+    android:background="@color/colorOne"
     android:paddingBottom="16dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
@@ -16,9 +16,71 @@
     <RelativeLayout
         android:id="@+id/relativeLayoutStartGame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
+        android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/textViewLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/level"
+            android:textColor="@color/colorWhite"
+            android:textSize="24sp" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/gridLayoutLevel"
+            android:columnCount="2"
+            android:rowCount="2"
+            android:layout_above="@+id/textViewScoreLabel"
+            android:layout_below="@+id/textViewLevel"
+            android:layout_marginTop="@dimen/activity_vertical_margin_m"
+            android:layout_marginBottom="@dimen/activity_vertical_margin_m"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:id="@+id/level1"
+                style="@style/CalculusLevelButtonStyle"
+                android:layout_column="0"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_row="0"
+                android:tag="10"
+                android:text="@string/level_0_10" />
+
+            <TextView
+                style="@style/CalculusLevelButtonStyle"
+                android:id="@+id/level2"
+                android:layout_column="1"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:background="@color/coloCorrectAns"
+                android:layout_row="0"
+                android:tag="15"
+                android:text="@string/level_0_15" />
+
+            <TextView
+                style="@style/CalculusLevelButtonStyle"
+                android:id="@+id/level3"
+                android:layout_column="0"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_row="1"
+                android:padding="@dimen/activity_vertical_margin_m"
+                android:tag="20"
+                android:text="@string/level_0_20" />
+
+            <TextView
+                style="@style/CalculusLevelButtonStyle"
+                android:id="@+id/level4"
+                android:layout_column="1"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_row="1"
+                android:tag="25"
+                android:text="@string/level_0_25" />
+
+        </GridLayout>
 
         <TextView
             android:id="@+id/textViewScoreLabel"
@@ -60,7 +122,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/relativeLayoutCalculus">
+        android:id="@+id/relativeLayoutCalculus"
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/linearLayoutTop"
@@ -119,7 +182,7 @@
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin_m"
             android:id="@+id/gridLayoutAnswers"
             android:columnCount="2"
             android:rowCount="2"
