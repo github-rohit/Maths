@@ -3,6 +3,7 @@
     <string name="times_tables">Times Tables</string>
     <string name="choose_times_tables">Choose Times Tables</string>
     <string name="tap_to_start">Tap to start</string>
+    <string name="tap_to_restart">Tap to restart</string>
     <string name="your_final_score">Your final score is</string>
 
     <string name="level">Choose Difficulty Level</string>
@@ -10,6 +11,7 @@
     <string name="subtraction">Subtraction</string>
     <string name="multiplication">Multiplication</string>
     <string name="divide">Divide</string>
+    <string name="quiz">Quiz</string>
 
     <string name="level_0_10">0-10</string>
     <string name="level_0_15">0-15</string>
@@ -23,6 +25,6 @@
     <string name="symbol_divide">/</string>
 
     <string name="next">Next Question</string>
-    <string name="correct">Correct</string>
-    <string name="wrong">Wrong</string>
+    <string name="correct">:) You answered correctly.</string>
+    <string name="wrong">:( Oops wrong answer.</string>
 </resources>

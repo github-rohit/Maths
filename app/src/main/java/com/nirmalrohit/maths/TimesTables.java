@@ -23,6 +23,8 @@ public class TimesTables extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.choose_times_tables);
+
         setContentView(R.layout.activity_times_tables);
 
         seekBar = (SeekBar) findViewById(R.id.seekBar);

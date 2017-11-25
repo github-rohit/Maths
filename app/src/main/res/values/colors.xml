@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#AB5C57</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorWhite">#ffffff</color>
@@ -9,7 +9,9 @@
     <color name="colorThree">#EBAE55</color>
     <color name="colorFour">#877696</color>
     <color name="colorFive">#80795D</color>
+    <color name="coloBlack">#000000</color>
     <color name="coloBlack20">#20000000</color>
+    <color name="coloBlack30">#30000000</color>
     <color name="coloCorrectAns">#2ECC71</color>
     <color name="coloWrongAns">#E74C3C</color>
 </resources>

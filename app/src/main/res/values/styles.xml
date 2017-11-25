@@ -1,11 +1,20 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">#000000</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="buttonStyle">@style/buttonStyle</item>
+    </style>
+
+    <style name="buttonStyle">
+        <item name="android:background">@drawable/ripple_effect</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/activity_horizontal_margin_d</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="MainMenuButtonStyle">
@@ -32,7 +41,7 @@
     <style name="CalculusButtonStyle">
         <item name="android:layout_columnWeight">1</item>
         <item name="android:layout_rowWeight">1</item>
-        <item name="android:background">@color/coloBlack20</item>
+        <item name="android:background">@color/coloBlack30</item>
         <item name="android:gravity">fill</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textColor">@color/colorWhite</item>

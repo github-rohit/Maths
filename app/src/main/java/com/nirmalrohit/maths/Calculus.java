@@ -1,6 +1,8 @@
 package com.nirmalrohit.maths;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.CountDownTimer;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,8 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -31,31 +36,34 @@ public class Calculus extends AppCompatActivity {
     private int correctAns;
     private int totalCorrectAns;
     private int totalQuestion;
+    private int unanswered;
     private Boolean isAttempted;
     private Boolean isAnswered;
     private Boolean isTest;
+    private Boolean isRestart;
 
     private RelativeLayout startGameLayout;
     private RelativeLayout calculusLayout;
     private RelativeLayout relativeLayout;
 
-    private TextView textViewScoreLabel;
+    private LinearLayout resultLayout;
+
     private TextView textViewFinalScore;
-    private TextView heading;
     private TextView textSymbol;
     private TextView viewFirstNum;
     private TextView viewSecondNum;
     private TextView viewScore;
     private TextView viewTimer;
 
-    private ImageView result;
-
     private Button btnNext;
+    private Button btnStartGame;
 
     private GridLayout gridLayout;
     private GridLayout gridLayoutLevel;
 
     private ArrayList<Integer> answers = new ArrayList<Integer>();
+
+    private  Toast currentToast;
 
 
     @Override
@@ -65,6 +73,11 @@ public class Calculus extends AppCompatActivity {
 
         calculusType = getIntent().getExtras().getInt("type");
 
+        if (calculusType == 4) {
+            setTitle(R.string.quiz);
+        }
+
+        isRestart = false;
         totalCorrectAns = 0;
         totalQuestion = 0;
 
@@ -74,29 +87,27 @@ public class Calculus extends AppCompatActivity {
         calculusLayout = (RelativeLayout) findViewById(R.id.relativeLayoutCalculus);
         startGameLayout = (RelativeLayout) findViewById(R.id.relativeLayoutStartGame);
 
-        heading = (TextView) findViewById(R.id.textViewHeading);
         textSymbol = (TextView) findViewById(R.id.text_symbol);
 
         viewFirstNum = (TextView) findViewById(R.id.text_number_one);
         viewSecondNum = (TextView) findViewById(R.id.text_number_two);
-        result = (ImageView) findViewById(R.id.imageViewResult);
         viewTimer = (TextView) findViewById(R.id.textViewClock);
         viewScore = (TextView) findViewById(R.id.textViewScore);
 
         gridLayout = (GridLayout) findViewById(R.id.gridLayoutAnswers);
         gridLayoutLevel = (GridLayout) findViewById(R.id.gridLayoutLevel);
 
+        btnStartGame = (Button) findViewById(R.id.buttonStartGame);
         btnNext = (Button) findViewById(R.id.button_next);
 
         if (calculusType == 4) {
             isTest = true;
 
-            textViewScoreLabel = (TextView) findViewById(R.id.textViewScoreLabel);
+            resultLayout = (LinearLayout) findViewById(R.id.resultLayout);
             textViewFinalScore = (TextView) findViewById(R.id.textViewFinalScore);
 
             calculusLayout.setVisibility(View.GONE);
             btnNext.setVisibility(View.GONE);
-            result.setVisibility(View.GONE);
 
             viewTimer.setVisibility(View.VISIBLE);
             startGameLayout.setVisibility(View.VISIBLE);
@@ -124,8 +135,9 @@ public class Calculus extends AppCompatActivity {
         isAnswered = false;
         question();
         createAnswers();
-        result.setImageResource(0);
+        unanswered = 1;
         totalQuestion++;
+        updateScoreText(viewScore);
     }
 
     private void question () {
@@ -180,7 +192,6 @@ public class Calculus extends AppCompatActivity {
 
                 while (num == correctAns || answers.indexOf(num) != -1 || num < 0) {
                     num = correctAns + random.nextInt(MAX_ANS) - random.nextInt(MAX_ANS);
-                    Log.i("num re: ", Integer.toString(num));
                 }
             }
 
@@ -192,12 +203,17 @@ public class Calculus extends AppCompatActivity {
         for(int i = 0 ; i <count ; i++){
             TextView child = (TextView) gridLayout.getChildAt(i);
             child.setText(answers.get(i).toString());
-            child.setBackgroundColor(getResources().getColor(R.color.coloBlack20));
+            child.setBackgroundColor(getResources().getColor(R.color.coloBlack30));
         }
 
     }
 
     public void checkAnswer (View view) {
+
+        unanswered = 0;
+
+        int toastMsgId = R.string.wrong;
+        int bgColor;
 
         if (isAnswered == false) {
             TextView textView = (TextView) view;
@@ -206,20 +222,23 @@ public class Calculus extends AppCompatActivity {
 
             if (userAns == correctAns) {
                 isAnswered = true;
-                result.setImageResource(R.drawable.correct);
-                textView.setBackgroundColor(getResources().getColor(R.color.coloCorrectAns));
+                toastMsgId = R.string.correct;
+                bgColor = getResources().getColor(R.color.coloCorrectAns);
+                textView.setBackgroundColor(bgColor);
 
             } else {
                 isAttempted = true;
-                result.setImageResource(R.drawable.wrong);
-                textView.setBackgroundColor(getResources().getColor(R.color.coloWrongAns));
+                bgColor = getResources().getColor(R.color.coloWrongAns);
+                textView.setBackgroundColor(bgColor);
             }
 
             if (!isAttempted) {
                 totalCorrectAns++;
             }
 
-            viewScore.setText(Integer.toString(totalCorrectAns) + "/" + Integer.toString(totalQuestion));
+            showToastMsg(toastMsgId, bgColor);
+
+            updateScoreText(viewScore);
         }
 
         if (isTest == true) {
@@ -231,8 +250,8 @@ public class Calculus extends AppCompatActivity {
 
     private void changeStyle () {
 
-        int bgColor = R.color.colorOne;
-        int headingId = R.string.subtraction;
+        int bgColorId = R.color.colorOne;
+        int headingId = R.string.quiz;
         int symbol = R.string.symbol_addition;
 
         if (isTest == true) {
@@ -240,48 +259,59 @@ public class Calculus extends AppCompatActivity {
         }
 
         if (calculusType == 0) {
-            bgColor = R.color.colorTwo;
+            bgColorId = R.color.colorTwo;
             headingId = R.string.addition;
             symbol = R.string.symbol_addition;
 
         } else if (calculusType == 1) {
-            bgColor = R.color.colorThree;
+            bgColorId = R.color.colorThree;
             headingId = R.string.subtraction;
             symbol = R.string.symbol_subtraction;
 
         } else if (calculusType == 2) {
-            bgColor = R.color.colorFour;
+            bgColorId = R.color.colorFour;
             headingId = R.string.multiplication;
             symbol = R.string.symbol_multiplication;
 
         } else if (calculusType == 3) {
-            bgColor = R.color.colorFive;
+            bgColorId = R.color.colorFive;
             headingId = R.string.divide;
             symbol = R.string.symbol_divide;
         }
 
-        relativeLayout.setBackgroundColor(getResources().getColor(bgColor));
-        heading.setText(headingId);
+
+        int bgColor = ContextCompat.getColor(this, bgColorId);
+
+        relativeLayout.setBackgroundColor(bgColor);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(bgColor));
+        setTitle(headingId);
         textSymbol.setText(symbol);
     }
 
     public void startGame (View view) {
 
-        startGameLayout.setVisibility(View.GONE);
-        calculusLayout.setVisibility(View.VISIBLE);
 
-        if (isTest == true) {
+        if (isRestart == true) {
+            isRestart = false;
+            btnStartGame.setText(R.string.tap_to_start);
+            gridLayoutLevel.setVisibility(View.VISIBLE);
+            resultLayout.setVisibility(View.GONE);
+        } else {
+            startGameLayout.setVisibility(View.GONE);
+            calculusLayout.setVisibility(View.VISIBLE);
 
-            totalCorrectAns = 0;
-            totalQuestion = 0;
+            if (isTest == true) {
 
-            viewScore.setText(Integer.toString(totalCorrectAns) + "/" + Integer.toString(totalQuestion));
+                totalCorrectAns = 0;
+                totalQuestion = 0;
 
-            changeStyle();
-            createQuestion();
-            timer();
+                updateScoreText(viewScore);
+
+                changeStyle();
+                createQuestion();
+                timer();
+            }
         }
-
 
     }
 
@@ -294,14 +324,24 @@ public class Calculus extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                int bgColor = ContextCompat.getColor(Calculus.this, R.color.colorOne);
 
-                textViewScoreLabel.setVisibility(View.VISIBLE);
-                textViewFinalScore.setVisibility(View.VISIBLE);
+                relativeLayout.setBackgroundColor(bgColor);
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(bgColor));
+                setTitle(R.string.quiz);
+
+                currentToast.cancel();
+                btnStartGame.setText(R.string.tap_to_restart);
+
+                isRestart = true;
+
+                gridLayoutLevel.setVisibility(View.GONE);
+                resultLayout.setVisibility(View.VISIBLE);
                 startGameLayout.setVisibility(View.VISIBLE);
 
                 calculusLayout.setVisibility(View.GONE);
 
-                textViewFinalScore.setText(Integer.toString(totalCorrectAns) + "/" + Integer.toString(totalQuestion));
+                updateScoreText(textViewFinalScore);
 
             }
         }.start();
@@ -322,5 +362,18 @@ public class Calculus extends AppCompatActivity {
         textView.setBackgroundColor(getResources().getColor(R.color.coloCorrectAns));
     }
 
+    private void updateScoreText (TextView view) {
+        view.setText(Integer.toString(totalCorrectAns) + "/" + Integer.toString(totalQuestion - unanswered));
+    }
 
+    private void showToastMsg (int msg, int bg) {
+
+        if(currentToast == null) {
+            currentToast = Toast.makeText(this, msg, Toast.LENGTH_SHORT);
+        }
+
+        currentToast.setText(msg);
+        currentToast.setDuration(Toast.LENGTH_LONG);
+        currentToast.show();
+    }
 }
