@@ -34,14 +34,13 @@ public class Calculus extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculus);
 
-        final int TYPE = getIntent().getExtras().getInt("type");
+        final int type = getIntent().getExtras().getInt("type");
+        final int max = getIntent().getExtras().getInt("max");
 
         RelativeLayout layout = findViewById(R.id.calculus);
         findViewById(R.id.button_next).setVisibility(View.VISIBLE);
 
-        GenerateQA.MAX = getIntent().getExtras().getInt("max");
-        GenerateQA.TYPE = TYPE;
-        generateQA = new GenerateQA();
+        generateQA = new GenerateQA(max, type);
 
         answerLayout = findViewById(R.id.gridLayoutAnswers);
         textView_questionSymbol = findViewById(R.id.text_symbol);

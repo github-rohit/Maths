@@ -22,8 +22,7 @@ public class Level extends AppCompatActivity {
 
         RelativeLayout layout = findViewById(R.id.activity_level);
 
-        GenerateQA.TYPE = type;
-        generateQA = new GenerateQA();
+        generateQA = new GenerateQA(0, type);
 
         HashMap<String, Integer> styleMap = generateQA.getQAStyle();
 
@@ -47,7 +46,7 @@ public class Level extends AppCompatActivity {
 
         intent.putExtra("type", type);
         intent.putExtra("max", max);
-
+        finish();
         startActivity(intent);
 
     }

@@ -24,16 +24,14 @@ import java.util.Random;
 
 public class GenerateQA {
 
-    static int MAX = 20;
-    static int TYPE = 1;
-
     private final int DRAW_RIPPLE_EFFECT = R.drawable.ripple_effect;
     private final int MAX_ANS = 4;
-    private final int MAX_Test = 4;
 
     private ArrayList<Integer> question = new ArrayList<Integer>();
     private ArrayList<Integer> answers = new ArrayList<Integer>();
     private Random random;
+    private int maxNumber;
+    private int questionType;
     private int correctAnsIndex;
     private int mTotalQuestions;
     private int mTotalCorrectAnswers;
@@ -41,9 +39,19 @@ public class GenerateQA {
     private Boolean mIsAnswered;
     private Boolean mIsAnsweredCorrectly;
 
-    public GenerateQA () {
+    public int getQuestionType() {
+        return questionType;
+    }
+
+    public void setQuestionType(int questionType) {
+        this.questionType = questionType;
+    }
+
+    public GenerateQA (int max, int type) {
 
         random = new Random();
+        maxNumber = max;
+        questionType = type;
         mTotalQuestions = 0;
         mTotalCorrectAnswers = 0;
     }
@@ -81,18 +89,18 @@ public class GenerateQA {
     }
 
     public ArrayList getQuestion() {
-        int firstNum = random.nextInt(MAX) + 1;
-        int secondNum = random.nextInt(MAX);
+        int firstNum = random.nextInt(maxNumber) + 1;
+        int secondNum = random.nextInt(maxNumber);
 
         if (firstNum < MAX_ANS) {
             while (firstNum < MAX_ANS) {
-                firstNum = random.nextInt(MAX) + 1;
+                firstNum = random.nextInt(maxNumber) + 1;
             }
         }
 
-        if (TYPE == 2) {
+        if (questionType == 2) {
             secondNum = random.nextInt(firstNum);
-        } else if (TYPE == 4) {
+        } else if (questionType == 4) {
 
             if (secondNum == 0) {
                 secondNum = 1;
@@ -160,6 +168,11 @@ public class GenerateQA {
         }
     }
 
+    public void  setQuestionAnswerView(TextView textView_firstNum, TextView textView_secondNum, GridLayout answerLayout) {
+        setQuestionView(textView_firstNum, textView_secondNum);
+        setAnswersView(answerLayout);
+    }
+
     public Boolean isCorrectAnswer(int index) {
         Boolean isAnswer;
 
@@ -185,22 +198,31 @@ public class GenerateQA {
         int bgColor = R.color.colorTwo;
         int title = R.string.addition;
 
-        if (TYPE == 1) {
-            symbol = R.string.symbol_addition;
-            bgColor = R.color.colorTwo;
-            title = R.string.addition;
-        } else if (TYPE == 2) {
-            symbol = R.string.symbol_subtraction;
-            bgColor = R.color.colorThree;
-            title = R.string.subtraction;
-        } else if (TYPE == 3) {
-            symbol = R.string.symbol_multiplication;
-            bgColor = R.color.colorFour;
-            title = R.string.multiplication;
-        } else if (TYPE == 4) {
-            symbol = R.string.symbol_divide;
-            bgColor = R.color.colorFive;
-            title = R.string.divide;
+        switch (questionType) {
+            case 1: {
+                symbol = R.string.symbol_addition;
+                bgColor = R.color.colorTwo;
+                title = R.string.addition;
+                break;
+            }
+            case 2: {
+                symbol = R.string.symbol_subtraction;
+                bgColor = R.color.colorThree;
+                title = R.string.subtraction;
+                break;
+            }
+            case 3: {
+                symbol = R.string.symbol_multiplication;
+                bgColor = R.color.colorFour;
+                title = R.string.multiplication;
+                break;
+            }
+            case 4: {
+                symbol = R.string.symbol_divide;
+                bgColor = R.color.colorFive;
+                title = R.string.divide;
+                break;
+            }
         }
 
         style.clear();
@@ -244,14 +266,23 @@ public class GenerateQA {
     private int getCorrectAnswer() {
         int answer = 0;
 
-        if (TYPE == 1) {
-            answer = question.get(0) + question.get(1);
-        } else if (TYPE == 2) {
-            answer = question.get(0) - question.get(1);
-        } else if (TYPE == 3) {
-            answer = question.get(0) * question.get(1);
-        } else if (TYPE == 4) {
-            answer = question.get(0) / question.get(1);
+        switch (questionType) {
+            case 1: {
+                answer = question.get(0) + question.get(1);
+                break;
+            }
+            case 2: {
+                answer = question.get(0) - question.get(1);
+                break;
+            }
+            case 3: {
+                answer = question.get(0) * question.get(1);
+                break;
+            }
+            case 4: {
+                answer = question.get(0) / question.get(1);
+                break;
+            }
         }
 
         return answer;

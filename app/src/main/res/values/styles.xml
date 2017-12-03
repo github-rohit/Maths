@@ -33,6 +33,11 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="ProgressBar" parent="@android:style/Widget.Holo.Light.ProgressBar.Horizontal">
+        <item name="android:progressTint">@color/coloBlack20</item>
+        <item name="android:progressBackgroundTint">@color/coloTransparent</item>
+    </style>
+
     <style name="MainMenuButtonStyle">
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">fill</item>
