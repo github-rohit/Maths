@@ -6,15 +6,31 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">#000000</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="buttonStyle">@style/buttonStyle</item>
+        <item name="actionBarStyle">@style/ActionBarTheme</item>
+        <item name="buttonStyle">@style/ButtonStyle</item>
     </style>
 
-    <style name="buttonStyle">
+    <style name="ActionBarTheme" parent="Base.Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="elevation">2dp</item>
+    </style>
+
+    <style name="ButtonStyle" parent="Base.Widget.AppCompat.Button.Colored">
         <item name="android:background">@drawable/ripple_effect</item>
-        <item name="android:gravity">center</item>
-        <item name="android:padding">@dimen/activity_horizontal_margin_d</item>
+    </style>
+
+    <style name="AppTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/colorWhite</item>
+        <item name="tabIndicatorHeight">0dp</item>
+        <item name="tabPaddingStart">2dp</item>
+        <item name="tabPaddingEnd">2dp</item>
+        <item name="tabBackground">@drawable/tab_color_selector</item>
+        <item name="tabTextAppearance">@style/AppTabTextAppearance</item>
+        <item name="tabSelectedTextColor">@color/colorWhite</item>
+    </style>
+    <!-- for text -->
+    <style name="AppTabTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="android:textColor">@color/colorWhite</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="MainMenuButtonStyle">
@@ -26,36 +42,52 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:scaleType">fitCenter</item>
         <item name="android:textAlignment">center</item>
-        <item name="android:onClick">calculus</item>
+        <item name="android:onClick">selectModule</item>
+    </style>
+
+    <style name="QuizMenuButtonStyle" parent="@style/MainMenuButtonStyle">
+        <item name="android:onClick">selectQuizModule</item>
     </style>
 
     <style name="CalculusQuestionStyle">
         <item name="android:layout_columnWeight">1</item>
         <item name="android:layout_rowWeight">1</item>
         <item name="android:textAlignment">viewEnd</item>
-        <item name="android:gravity">fill</item>
+        <item name="android:padding">0dp</item>
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">60sp</item>
     </style>
 
     <style name="CalculusButtonStyle">
+        <item name="android:layout_columnSpan">1</item>
         <item name="android:layout_columnWeight">1</item>
         <item name="android:layout_rowWeight">1</item>
-        <item name="android:background">@color/coloBlack30</item>
-        <item name="android:gravity">fill</item>
+        <item name="android:background">@drawable/ripple_effect</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">30sp</item>
-        <item name="android:padding">@dimen/activity_horizontal_margin_m</item>
-        <item name="android:onClick">checkAnswer</item>
+        <item name="android:padding">@dimen/activity_horizontal_margin_d</item>
     </style>
 
-    <style name="CalculusLevelButtonStyle" parent="@style/CalculusButtonStyle">
-        <item name="android:onClick">setLevel</item>
+    <style name="LevelButtonStyle" parent="@style/CalculusButtonStyle">
+        <item name="android:background">@drawable/white_ripple</item>
+        <item name="android:textColor">@color/coloBlack</item>
+        <item name="android:onClick">startLearning</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">normal</item>
     </style>
 
     <style name="CalculusAnswerButtonStyle" parent="@style/CalculusButtonStyle">
         <item name="android:onClick">checkAnswer</item>
     </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
 

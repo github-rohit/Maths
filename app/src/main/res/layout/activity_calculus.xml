@@ -1,270 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    android:id="@+id/calculus"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android/tools"
-    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorOne"
-    android:orientation="vertical"
-    tools:context=".Addition">
+    tools:context=".Calculus">
 
-    <RelativeLayout
-        android:id="@+id/relativeLayoutStartGame"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/activity_horizontal_margin_d"
-        android:visibility="gone">
-
-        <ScrollView
+        android:layout_above="@+id/bottom_layout">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/buttonStartGame"
-            android:layout_marginBottom="@dimen/activity_horizontal_margin_d">
+            android:padding="@dimen/activity_horizontal_margin_d"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <GridLayout
+                android:id="@+id/gridLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/gridLayoutLevel"
-                android:orientation="vertical">
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
 
-                <GridLayout
-                    android:id="@+id/gridLayoutLevel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin_m"
-                    android:columnCount="2"
-                    android:rowCount="2">
+                <TextView
+                    android:id="@+id/text_firstNum"
+                    style="@style/CalculusQuestionStyle"
+                    android:layout_column="0"
+                    android:layout_columnSpan="2"
+                    android:layout_row="0"
+                    android:text="1" />
 
-                    <TextView
-                        android:id="@+id/level1"
-                        style="@style/CalculusLevelButtonStyle"
-                        android:layout_column="0"
-                        android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:layout_row="0"
-                        android:tag="10"
-                        android:text="@string/level_0_10" />
+                <TextView
+                    android:id="@+id/text_symbol"
+                    style="@style/CalculusQuestionStyle"
+                    android:layout_column="0"
+                    android:layout_row="1"
+                    android:text="+" />
 
-                    <TextView
-                        android:id="@+id/level2"
-                        style="@style/CalculusLevelButtonStyle"
-                        android:layout_column="1"
-                        android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_row="0"
-                        android:background="@color/coloCorrectAns"
-                        android:tag="15"
-                        android:text="@string/level_0_15" />
+                <TextView
+                    android:id="@+id/text_secondNum"
+                    style="@style/CalculusQuestionStyle"
+                    android:layout_column="1"
+                    android:layout_row="1"
+                    android:text="00" />
 
-                    <TextView
-                        android:id="@+id/level3"
-                        style="@style/CalculusLevelButtonStyle"
-                        android:layout_column="0"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:layout_marginTop="@dimen/activity_horizontal_margin"
-                        android:layout_row="1"
-                        android:padding="@dimen/activity_vertical_margin_m"
-                        android:tag="20"
-                        android:text="@string/level_0_20" />
+            </GridLayout>
 
-                    <TextView
-                        android:id="@+id/level4"
-                        style="@style/CalculusLevelButtonStyle"
-                        android:layout_column="1"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginTop="@dimen/activity_horizontal_margin"
-                        android:layout_row="1"
-                        android:tag="25"
-                        android:text="@string/level_0_25" />
+            <GridLayout
+                android:id="@+id/gridLayoutAnswers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/gridLayout3"
+                android:layout_marginTop="@dimen/activity_vertical_margin_m"
+                android:columnCount="2"
+                android:rowCount="2">
 
-                </GridLayout>
+                <TextView
+                    android:id="@+id/answer1"
+                    style="@style/CalculusAnswerButtonStyle"
+                    android:layout_column="0"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin_sm"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin_sm"
+                    android:layout_row="0"
+                    android:tag="0"
+                    android:text="1" />
 
-                <LinearLayout
-                    android:id="@+id/resultLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:visibility="gone">
+                <TextView
+                    android:id="@+id/answer2"
+                    style="@style/CalculusAnswerButtonStyle"
+                    android:layout_column="1"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin_sm"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin_sm"
+                    android:layout_row="0"
+                    android:tag="1"
+                    android:text="2" />
 
-                    <TextView
-                        android:id="@+id/textViewScoreLabel"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/your_final_score"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="24sp"/>
+                <TextView
+                    android:id="@+id/answer3"
+                    style="@style/CalculusAnswerButtonStyle"
+                    android:layout_column="0"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin_sm"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin_sm"
+                    android:layout_row="1"
+                    android:tag="2"
+                    android:text="3" />
 
-                    <TextView
-                        android:id="@+id/textViewFinalScore"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/textViewScoreLabel"
-                        android:text="0"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="60sp"/>
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/answer4"
+                    style="@style/CalculusAnswerButtonStyle"
+                    android:layout_column="1"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin_sm"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin_sm"
+                    android:layout_row="1"
+                    android:tag="3"
+                    android:text="4" />
 
-            </LinearLayout>
-        </ScrollView>
+            </GridLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/activity_horizontal_margin_d"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/text_score"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="0/0"
+            android:textColor="@color/colorWhite"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/text_timer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:textColor="@color/colorWhite"
+            android:textSize="30sp"
+            android:visibility="gone"/>
 
         <Button
-            android:id="@+id/buttonStartGame"
-            android:layout_width="match_parent"
+            android:id="@+id/button_next"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:background="@color/coloBlack20"
-            android:onClick="startGame"
-            android:text="@string/tap_to_start"
-            android:textColor="@color/colorWhite"
-            android:textSize="18sp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayoutCalculus"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible">
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/bottom_layout">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="@dimen/activity_horizontal_margin_d"
-                android:orientation="vertical">
-                <GridLayout
-                    android:id="@+id/gridLayout3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true">
-
-                    <TextView
-                        android:id="@+id/text_number_one"
-                        style="@style/CalculusQuestionStyle"
-                        android:layout_column="0"
-                        android:layout_columnSpan="2"
-                        android:layout_row="0"
-                        android:text="1" />
-
-                    <TextView
-                        android:id="@+id/text_symbol"
-                        style="@style/CalculusQuestionStyle"
-                        android:layout_column="0"
-                        android:layout_row="1"
-                        android:text="+" />
-
-                    <TextView
-                        android:id="@+id/text_number_two"
-                        style="@style/CalculusQuestionStyle"
-                        android:layout_column="1"
-                        android:layout_row="1"
-                        android:text="00" />
-
-                </GridLayout>
-
-                <GridLayout
-                    android:id="@+id/gridLayoutAnswers"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/gridLayout3"
-                    android:layout_marginTop="@dimen/activity_vertical_margin_m"
-                    android:columnCount="2"
-                    android:rowCount="2">
-
-                    <TextView
-                        android:id="@+id/answer1"
-                        style="@style/CalculusAnswerButtonStyle"
-                        android:layout_column="0"
-                        android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:layout_row="0"
-                        android:tag="0"
-                        android:text="1" />
-
-                    <TextView
-                        android:id="@+id/answer2"
-                        style="@style/CalculusAnswerButtonStyle"
-                        android:layout_column="1"
-                        android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_row="0"
-                        android:tag="1"
-                        android:text="2" />
-
-                    <TextView
-                        android:id="@+id/answer3"
-                        style="@style/CalculusAnswerButtonStyle"
-                        android:layout_column="0"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:layout_marginTop="@dimen/activity_horizontal_margin"
-                        android:layout_row="1"
-                        android:padding="@dimen/activity_vertical_margin_m"
-                        android:tag="2"
-                        android:text="3" />
-
-                    <TextView
-                        android:id="@+id/answer4"
-                        style="@style/CalculusAnswerButtonStyle"
-                        android:layout_column="1"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginTop="@dimen/activity_horizontal_margin"
-                        android:layout_row="1"
-                        android:tag="3"
-                        android:text="4" />
-
-                </GridLayout>
-
-            </LinearLayout>
-        </ScrollView>
-
-        <LinearLayout
-            android:id="@+id/bottom_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="@dimen/activity_horizontal_margin_d"
-            android:weightSum="2">
-
-            <TextView
-                android:id="@+id/textViewScore"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="0/0"
-                android:textColor="@color/colorWhite"
-                android:textSize="30sp" />
-
-            <TextView
-                android:id="@+id/textViewClock"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:textColor="@color/colorWhite"
-                android:textSize="30sp"
-                android:visibility="gone"/>
-
-            <Button
-                android:id="@+id/button_next"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/next"/>
-        </LinearLayout>
-
-    </RelativeLayout>
-
-
+            android:layout_weight="1"
+            android:onClick="nextQuestion"
+            android:text="@string/next"
+            android:visibility="gone"/>
+    </LinearLayout>
 </RelativeLayout>

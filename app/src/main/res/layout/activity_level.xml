@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/activity_level"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".Level">
+
+    <GridLayout
+        android:id="@+id/gridLayoutLevel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:columnCount="1"
+        android:rowCount="4">
+
+        <Button
+            android:id="@+id/level1"
+            style="@style/LevelButtonStyle"
+            android:layout_column="0"
+            android:layout_marginBottom="1dp"
+            android:layout_row="0"
+            android:tag="10"
+            android:text="@string/level_0_10" />
+
+        <Button
+            android:id="@+id/level2"
+            style="@style/LevelButtonStyle"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:layout_marginBottom="1dp"
+            android:tag="15"
+            android:text="@string/level_0_15" />
+
+        <Button
+            android:id="@+id/level3"
+            style="@style/LevelButtonStyle"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:layout_marginBottom="1dp"
+            android:tag="20"
+            android:text="@string/level_0_20" />
+
+        <Button
+            android:id="@+id/level4"
+            style="@style/LevelButtonStyle"
+            android:layout_column="0"
+            android:layout_row="3"
+            android:tag="25"
+            android:layout_marginBottom="0dp"
+            android:text="@string/level_0_25" />
+
+    </GridLayout>
+
+
+</RelativeLayout>

@@ -9,15 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TimesTables" />
-        <activity android:name=".Calculus"></activity>
+        <activity
+            android:name=".Quiz"
+            android:label="@string/quiz" />
+        <activity android:name=".Calculus" />
+        <activity
+            android:name=".TimesTables"
+            android:label="@string/title_activity_times_tables"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Level"
+            android:label="@string/level" />
+        <activity android:name=".Quizzes"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

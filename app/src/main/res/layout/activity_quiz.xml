@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/activity_main"
+    android:id="@+id/activity_quiz"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Quiz">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,48 +25,22 @@
             android:layout_alignParentStart="true">
 
             <ImageButton
-                android:id="@+id/btn_times_tables"
-                style="@style/MainMenuButtonStyle"
-                android:background="@color/colorOne"
-                android:tag="0"
-                app:srcCompat="@drawable/symbol_times_tables"
-                android:scaleType="fitCenter"/>
-
-            <ImageButton
                 android:id="@+id/btn_addition"
-                style="@style/MainMenuButtonStyle"
+                style="@style/QuizMenuButtonStyle"
                 android:background="@color/colorTwo"
                 android:tag="1"
                 app:srcCompat="@drawable/symbol_addition"
                 android:scaleType="fitCenter"/>
 
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true">
-
             <ImageButton
                 android:id="@+id/btn_sub"
-                style="@style/MainMenuButtonStyle"
+                style="@style/QuizMenuButtonStyle"
                 android:background="@color/colorThree"
                 android:tag="2"
                 app:srcCompat="@drawable/symbol_subtraction"
                 android:scaleType="fitCenter" />
 
-            <ImageButton
-                android:id="@+id/btn_mul"
-                style="@style/MainMenuButtonStyle"
-                android:background="@color/colorFour"
-                android:tag="3"
-                app:srcCompat="@drawable/symbol_multiplication"
-                android:scaleType="fitCenter" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -79,16 +53,35 @@
             android:layout_alignParentStart="true">
 
             <ImageButton
+                android:id="@+id/btn_mul"
+                style="@style/QuizMenuButtonStyle"
+                android:background="@color/colorFour"
+                android:tag="3"
+                app:srcCompat="@drawable/symbol_multiplication"
+                android:scaleType="fitCenter" />
+
+            <ImageButton
                 android:id="@+id/btn_div"
-                style="@style/MainMenuButtonStyle"
+                style="@style/QuizMenuButtonStyle"
                 android:background="@color/colorFive"
                 android:tag="4"
                 app:srcCompat="@drawable/symbol_divide"
                 android:scaleType="fitCenter" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true">
+
             <ImageButton
                 android:id="@+id/btn_test"
-                style="@style/MainMenuButtonStyle"
+                style="@style/QuizMenuButtonStyle"
                 android:background="@color/colorWhite"
                 android:tag="5"
                 app:srcCompat="@drawable/symbol_test"
