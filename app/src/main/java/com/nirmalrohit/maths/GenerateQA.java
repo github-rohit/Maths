@@ -189,8 +189,8 @@ public class GenerateQA {
 
         HashMap<String, Integer> style = new HashMap<String, Integer>();
         int symbol = R.string.symbol_addition;
-        int bgColor = R.color.colorTwo;
-        int title = R.string.addition;
+        int bgColor = R.color.colorAccent;
+        int title = R.string.app_name;
 
         switch (questionType) {
             case 1: {
