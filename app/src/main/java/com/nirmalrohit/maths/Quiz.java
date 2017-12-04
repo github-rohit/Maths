@@ -27,6 +27,8 @@ import static java.security.AccessController.getContext;
 
 public class Quiz extends AppCompatActivity {
 
+    private final int TIMER_SEC = 30100;
+
     private TextView textViewTimer;
     private TextView textView_questionSymbol;
     private TextView textView_firstNum;
@@ -37,8 +39,11 @@ public class Quiz extends AppCompatActivity {
     RelativeLayout layout;
     private GridLayout answerLayout;
 
+    private CountDownTimer countDownTimer;
+
     private ArrayList<Integer> question = new ArrayList<Integer>();
     private int bgColor;
+    private int millisUntilRemaining;
     private GenerateQA generateQA;
     private Boolean isRandom = false;
     private Random random;
@@ -75,23 +80,24 @@ public class Quiz extends AppCompatActivity {
 
         setActivityStyle();
         setQuestionAnswerView();
-        quizTimer();
+        quizTimer(TIMER_SEC);
     }
 
     private void setQuestionAnswerView() {
         generateQA.setQuestionAnswerView(textView_firstNum, textView_secondNum, answerLayout);
     }
 
-    private void quizTimer ()  {
+    private void quizTimer (int milliSec)  {
         progressBar.setVisibility(View.VISIBLE);
         textViewTimer.setVisibility(View.VISIBLE);
-        new CountDownTimer(5100, 1000) {
+        countDownTimer = new CountDownTimer(milliSec, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                int remain = (int) (millisUntilFinished / 1000);
+                millisUntilRemaining = (int) millisUntilFinished;
+                int inSec = (int) (millisUntilFinished / 1000);
 
-                textViewTimer.setText(String.valueOf(remain) + "s");
-                progressBar.setProgress(remain);
+                textViewTimer.setText(String.valueOf(inSec) + "s");
+                progressBar.setProgress(inSec);
 
             }
 
@@ -102,7 +108,7 @@ public class Quiz extends AppCompatActivity {
 
                 new AlertDialog.Builder(Quiz.this)
                         .setTitle("Game Over")
-                        .setMessage("Your final score is" + generateQA.getTotalCorrectAnswers() + " answered correctly out of " + generateQA.getTotalQuestions())
+                        .setMessage("Your final score is " + generateQA.getTotalCorrectAnswers() + " answered correctly out of " + generateQA.getTotalQuestions())
                         .setNegativeButton("CLOSE", new DialogInterface.OnClickListener(){
 
                             @Override
@@ -148,7 +154,7 @@ public class Quiz extends AppCompatActivity {
         generateQA.setProgressTextView(textView_score);
 
         setQuestionAnswerView();
-        quizTimer();
+        quizTimer(TIMER_SEC);
     }
 
     public void checkAnswer(View view) {
@@ -161,5 +167,25 @@ public class Quiz extends AppCompatActivity {
         }
 
         setQuestionAnswerView();
+    }
+
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        quizTimer(millisUntilRemaining);
+    }
+
+    @Override
+    public void onStop () {
+        super.onStop();
+
+        countDownTimer.cancel();
+    }
+
+    @Override
+    public void onDestroy () {
+        super.onDestroy();
+
+        countDownTimer.cancel();
     }
 }

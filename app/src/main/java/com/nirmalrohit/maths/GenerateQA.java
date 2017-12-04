@@ -2,17 +2,11 @@ package com.nirmalrohit.maths;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.app.ActionBar;
-import android.app.Activity;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -241,9 +235,10 @@ public class GenerateQA {
         Boolean isAnswer = isCorrectAnswer(index);
 
         if (isAnswer) {
-            bgColor = R.drawable.green_button_smile;
+            bgColor = R.drawable.green_button;
             hideAnswerButtons(view, animate);
         } else {
+            textView.setText("");
             bgColor = R.drawable.red_button;
         }
 
@@ -317,7 +312,6 @@ public class GenerateQA {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                view.setText("");
                 view.setBackgroundResource(bgColor);
                 view.animate().scaleX(1).setDuration(duration).setListener(null);
             }

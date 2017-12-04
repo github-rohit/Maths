@@ -21,6 +21,8 @@ public class Calculus extends AppCompatActivity {
     private TextView textView_secondNum;
     private TextView textView_score;
 
+    private Button btnNext;
+
     private GridLayout answerLayout;
 
     private ArrayList<Integer> question = new ArrayList<Integer>();
