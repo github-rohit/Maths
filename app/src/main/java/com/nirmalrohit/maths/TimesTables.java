@@ -110,6 +110,7 @@ public class TimesTables extends AppCompatActivity {
             }
 
             list.setAdapter(new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.table_row, items));
+            list.setOnItemClickListener(null);
 
             return rootView;
         }

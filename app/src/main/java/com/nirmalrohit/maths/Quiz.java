@@ -42,6 +42,8 @@ public class Quiz extends AppCompatActivity {
     private CountDownTimer countDownTimer;
 
     private ArrayList<Integer> question = new ArrayList<Integer>();
+    private int max;
+    private int type;
     private int bgColor;
     private int millisUntilRemaining;
     private GenerateQA generateQA;
@@ -55,8 +57,8 @@ public class Quiz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculus);
 
-        int max = getIntent().getExtras().getInt("max");
-        int type = getIntent().getExtras().getInt("type");
+        max = getIntent().getExtras().getInt("max");
+        type = getIntent().getExtras().getInt("type");
 
         if (type == 5) {
             random = new Random();
@@ -106,23 +108,14 @@ public class Quiz extends AppCompatActivity {
                 textViewTimer.setText("0s");
                 progressBar.setProgress(0);
 
-                new AlertDialog.Builder(Quiz.this)
-                        .setTitle("Game Over")
-                        .setMessage("Your final score is " + generateQA.getTotalCorrectAnswers() + " answered correctly out of " + generateQA.getTotalQuestions())
-                        .setNegativeButton("CLOSE", new DialogInterface.OnClickListener(){
+                Intent intent = new Intent(Quiz.this, QuizResult.class);
+                intent.putExtra("max", max);
+                intent.putExtra("type", type);
 
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                finish();
-                            }
-                        })
-                        .setPositiveButton("RE START", new DialogInterface.OnClickListener(){
+                finish();
 
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                restart();
-                            }
-                        }).show();
+                startActivity(intent);
+
             }
         }.start();
     }

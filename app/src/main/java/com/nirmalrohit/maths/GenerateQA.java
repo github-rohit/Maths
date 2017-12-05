@@ -116,13 +116,14 @@ public class GenerateQA {
         return question;
     }
 
-    public void setQuestionView(TextView textView_firstNum, TextView textView_secondNum) {
+    public ArrayList setQuestionView(TextView textView_firstNum, TextView textView_secondNum) {
 
         getQuestion();
 
         textView_firstNum.setText(Integer.toString(question.get(0)));
         textView_secondNum.setText(Integer.toString(question.get(1)));
 
+        return question;
     }
 
     public ArrayList getAnswers() {
@@ -149,7 +150,7 @@ public class GenerateQA {
         return answers;
     }
 
-    public void setAnswersView(GridLayout answerLayout) {
+    public ArrayList setAnswersView(GridLayout answerLayout) {
         int count = answerLayout.getChildCount();
 
         getAnswers();
@@ -160,11 +161,21 @@ public class GenerateQA {
             child.setText(answers.get(i).toString());
             child.setBackgroundResource(DRAW_RIPPLE_EFFECT);
         }
+
+        return answers;
     }
 
-    public void  setQuestionAnswerView(TextView textView_firstNum, TextView textView_secondNum, GridLayout answerLayout) {
-        setQuestionView(textView_firstNum, textView_secondNum);
-        setAnswersView(answerLayout);
+    public HashMap setQuestionAnswerView(TextView textView_firstNum, TextView textView_secondNum, GridLayout answerLayout) {
+        HashMap<String, Object> QAHashMap = new HashMap<>();
+
+        ArrayList<Integer> questionArray = setQuestionView(textView_firstNum, textView_secondNum);
+        ArrayList<Integer> answersArray = setAnswersView(answerLayout);
+
+        QAHashMap.put("question", questionArray);
+        QAHashMap.put("answers", answersArray);
+        QAHashMap.put("correctAnswer", answersArray.get(correctAnsIndex));
+        
+        return QAHashMap;
     }
 
     public Boolean isCorrectAnswer(int index) {
@@ -189,7 +200,7 @@ public class GenerateQA {
 
         HashMap<String, Integer> style = new HashMap<String, Integer>();
         int symbol = R.string.symbol_addition;
-        int bgColor = R.color.colorAccent;
+        int bgColor = R.color.colorPrimary;
         int title = R.string.app_name;
 
         switch (questionType) {

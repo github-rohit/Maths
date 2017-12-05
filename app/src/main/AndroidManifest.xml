@@ -25,12 +25,14 @@
         <activity
             android:name=".TimesTables"
             android:label="@string/title_activity_times_tables"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Level"
             android:label="@string/level" />
-        <activity android:name=".Quizzes"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Quizzes"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".QuizResult"></activity>
     </application>
 
 </manifest>

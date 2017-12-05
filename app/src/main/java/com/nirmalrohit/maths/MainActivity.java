@@ -7,20 +7,22 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
-        //getSupportActionBar().hide();
+
         setContentView(R.layout.activity_main);
     }
 
     public void selectModule(View view) {
         int index = Integer.parseInt( view.getTag().toString() );
         Intent intent;
-        Log.i("index", Integer.toString(index));
+
         if (index == 0) {
             intent = new Intent(MainActivity.this, TimesTables.class);
         } else if (index == 5) {
@@ -33,5 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
+
 }
 
