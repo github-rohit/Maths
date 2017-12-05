@@ -24,6 +24,7 @@ public class GenerateQA {
     private ArrayList<Integer> question = new ArrayList<Integer>();
     private ArrayList<Integer> answers = new ArrayList<Integer>();
     private Random random;
+    private int symbol;
     private int maxNumber;
     private int questionType;
     private int correctAnsIndex;
@@ -107,12 +108,14 @@ public class GenerateQA {
 
         question.add(0, firstNum);
         question.add(1, secondNum);
+        question.add(2, symbol);
 
         setIsAnsweredCorrectly(false);
         setIsAnswered(false);
 
         mTotalQuestions++;
 
+        System.out.println(question);
         return question;
     }
 
@@ -168,12 +171,12 @@ public class GenerateQA {
     public HashMap setQuestionAnswerView(TextView textView_firstNum, TextView textView_secondNum, GridLayout answerLayout) {
         HashMap<String, Object> QAHashMap = new HashMap<>();
 
-        ArrayList<Integer> questionArray = setQuestionView(textView_firstNum, textView_secondNum);
-        ArrayList<Integer> answersArray = setAnswersView(answerLayout);
+        setQuestionView(textView_firstNum, textView_secondNum);
+        setAnswersView(answerLayout);
 
-        QAHashMap.put("question", questionArray);
-        QAHashMap.put("answers", answersArray);
-        QAHashMap.put("correctAnswer", answersArray.get(correctAnsIndex));
+        QAHashMap.put("question", question.clone());
+        QAHashMap.put("answers", answers.clone());
+        QAHashMap.put("correctAnswer", answers.get(correctAnsIndex));
         
         return QAHashMap;
     }
@@ -192,14 +195,16 @@ public class GenerateQA {
         } else {
             isAnswer = false;
         }
+
         setIsAnswered(true);
+
         return isAnswer;
     }
 
     public HashMap getQAStyle() {
 
         HashMap<String, Integer> style = new HashMap<String, Integer>();
-        int symbol = R.string.symbol_addition;
+        symbol = R.string.symbol_addition;
         int bgColor = R.color.colorPrimary;
         int title = R.string.app_name;
 

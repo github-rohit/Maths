@@ -27,7 +27,7 @@ import static java.security.AccessController.getContext;
 
 public class Quiz extends AppCompatActivity {
 
-    private final int TIMER_SEC = 30100;
+    private final int TIMER_SEC = 2100;
 
     private TextView textViewTimer;
     private TextView textView_questionSymbol;
@@ -41,7 +41,7 @@ public class Quiz extends AppCompatActivity {
 
     private CountDownTimer countDownTimer;
 
-    private ArrayList<Integer> question = new ArrayList<Integer>();
+    private ArrayList<HashMap> questions = new ArrayList<>();
     private int max;
     private int type;
     private int bgColor;
@@ -86,7 +86,8 @@ public class Quiz extends AppCompatActivity {
     }
 
     private void setQuestionAnswerView() {
-        generateQA.setQuestionAnswerView(textView_firstNum, textView_secondNum, answerLayout);
+        HashMap<String, Object> question = generateQA.setQuestionAnswerView(textView_firstNum, textView_secondNum, answerLayout);
+        questions.add(question);
     }
 
     private void quizTimer (int milliSec)  {
@@ -111,6 +112,7 @@ public class Quiz extends AppCompatActivity {
                 Intent intent = new Intent(Quiz.this, QuizResult.class);
                 intent.putExtra("max", max);
                 intent.putExtra("type", type);
+                intent.putExtra("questions", questions);
 
                 finish();
 
@@ -150,7 +152,22 @@ public class Quiz extends AppCompatActivity {
         quizTimer(TIMER_SEC);
     }
 
+    private void setUserAnswer (int answerIndex) {
+        int index = questions.size() - 1;
+
+        HashMap<String, Object> item = questions.get(index);
+
+        item.put("your_answer", answerIndex);
+        System.out.println(answerIndex);
+        questions.set(index, item);
+    }
+
     public void checkAnswer(View view) {
+
+        int index = Integer.parseInt( view.getTag().toString() );
+
+        setUserAnswer(index);
+
         generateQA.setAnsweredView(view, false);
         generateQA.setProgressTextView(textView_score);
 

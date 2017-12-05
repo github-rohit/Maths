@@ -8,28 +8,26 @@ import android.view.View;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class QuizResult extends AppCompatActivity {
+    private ArrayList<HashMap<String, Object>> questionList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_result);
+
+        questionList = (ArrayList<HashMap<String, Object>>) getIntent().getSerializableExtra("questions");
     }
 
     public void showResult (View view) {
-        ArrayList<String> items = new ArrayList<String>();
 
-        for (int i = 1; i <= 10; i++ ) {
-            String step = 2 + " X " + i + " = " + 2*i;
-            items.add(step);
-        }
-
-        AnswerListAdapter adp = new AnswerListAdapter(this, items);
+        AnswerListAdapter answerListAdapter = new AnswerListAdapter(this, questionList);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                .setTitle("ANSWER")
-                .setAdapter(adp, null)
+                .setTitle(R.string.your_answers)
+                .setAdapter(answerListAdapter, null)
                 .setCancelable(true)
                 .setNegativeButton("Close", null);
 
