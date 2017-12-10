@@ -91,6 +91,29 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="ScoreLabelStyle">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="fontFamily">@font/stencil_bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="ScoreCountStyle" parent="@style/ScoreLabelStyle">
+        <item name="android:textSize">60sp</item>
+        <item name="android:shadowColor">@color/coloBlack</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+
+    <style name="ScoreButtonStyle" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:drawablePadding">@dimen/activity_vertical_margin_sm</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

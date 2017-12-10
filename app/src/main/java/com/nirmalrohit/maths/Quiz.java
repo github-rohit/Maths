@@ -27,7 +27,7 @@ import static java.security.AccessController.getContext;
 
 public class Quiz extends AppCompatActivity {
 
-    private final int TIMER_SEC = 2100;
+    private final int TIMER_SEC = 5100;
 
     private TextView textViewTimer;
     private TextView textView_questionSymbol;
@@ -59,16 +59,18 @@ public class Quiz extends AppCompatActivity {
 
         max = getIntent().getExtras().getInt("max");
         type = getIntent().getExtras().getInt("type");
+        int styleType;
 
         if (type == 5) {
             random = new Random();
             isRandom = true;
-            type = getQuestionType();
+            styleType = getQuestionType();
         } else {
             isRandom = false;
+            styleType = type;
         }
 
-        generateQA = new GenerateQA(max, type);
+        generateQA = new GenerateQA(max, styleType);
 
         layout = findViewById(R.id.calculus);
         answerLayout = findViewById(R.id.gridLayoutAnswers);
@@ -113,6 +115,9 @@ public class Quiz extends AppCompatActivity {
                 intent.putExtra("max", max);
                 intent.putExtra("type", type);
                 intent.putExtra("questions", questions);
+                intent.putExtra("correctAnswerCount", generateQA.getTotalCorrectAnswers());
+                intent.putExtra("wrongAnswerCount", generateQA.getTotalWrongAnswerCount());
+                intent.putExtra("skipAnswerCount", 0);
 
                 finish();
 
@@ -158,7 +163,7 @@ public class Quiz extends AppCompatActivity {
         HashMap<String, Object> item = questions.get(index);
 
         item.put("your_answer", answerIndex);
-        System.out.println(answerIndex);
+
         questions.set(index, item);
     }
 

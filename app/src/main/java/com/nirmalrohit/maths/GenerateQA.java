@@ -34,21 +34,20 @@ public class GenerateQA {
     private Boolean mIsAnswered;
     private Boolean mIsAnsweredCorrectly;
 
+    public GenerateQA (int max, int type) {
+        random = new Random();
+        maxNumber = max;
+        questionType = type;
+        mTotalQuestions = 0;
+        mTotalCorrectAnswers = 0;
+    }
+
     public int getQuestionType() {
         return questionType;
     }
 
     public void setQuestionType(int questionType) {
         this.questionType = questionType;
-    }
-
-    public GenerateQA (int max, int type) {
-
-        random = new Random();
-        maxNumber = max;
-        questionType = type;
-        mTotalQuestions = 0;
-        mTotalCorrectAnswers = 0;
     }
 
     public int getTotalQuestions() {
@@ -272,6 +271,17 @@ public class GenerateQA {
         String text = Integer.toString(getTotalCorrectAnswers()) + "/" + Integer.toString(getTotalQuestions());
 
         view.setText(text);
+    }
+
+    public int getTotalWrongAnswerCount() {
+
+        int ans = 0;
+
+        if(getIsAnswered() == false) {
+            ans = 1;
+        }
+
+        return  getTotalQuestions() - getTotalCorrectAnswers() - 1;
     }
 
     private int getCorrectAnswer() {

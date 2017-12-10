@@ -1,42 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/textView_answers_list"
-    android:orientation="vertical"
-    android:padding="@dimen/activity_horizontal_margin">
+    android:id="@+id/textView_answers_list">
 
-    <TextView
-        android:id="@+id/textView_question"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:paddingLeft="@dimen/activity_vertical_margin_d"
-        android:paddingRight="@dimen/activity_vertical_margin_d"
-        android:paddingBottom="@dimen/activity_vertical_margin_sm"
-        android:textSize="18sp"
-        android:layout_height="wrap_content" />
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingLeft="@dimen/activity_vertical_margin_d"
-        android:paddingRight="@dimen/activity_vertical_margin_d" >
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="right|bottom">
 
         <TextView
-            android:id="@+id/textView_answerLabel"
+            android:id="@+id/textView_questionNo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/you_answered"/>
+            android:layout_marginBottom="-18dp"
+            android:layout_marginTop="-17dp"
+            android:gravity="right|clip_vertical"
+            android:shadowColor="@color/coloBlack"
+            android:shadowRadius="1"
+            android:textColor="#FFFFFF"
+            android:textSize="72sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
-        <TextView
-            android:id="@+id/textView_answer"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="@android:color/primary_text_light" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:paddingTop="@dimen/activity_horizontal_margin_sm"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingBottom="@dimen/activity_horizontal_margin_sm"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:orientation="vertical"
+            android:visibility="visible">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textView_question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_vertical_margin_d"
+                android:paddingRight="@dimen/activity_vertical_margin_d"
+                android:textStyle="bold"
+                android:textSize="18sp" />
 
-</LinearLayout>
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/activity_vertical_margin_d"
+                android:paddingRight="@dimen/activity_vertical_margin_d">
+
+                <TextView
+                    android:id="@+id/textView_answerLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/you_answered" />
+
+                <TextView
+                    android:id="@+id/textView_answer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/primary_text_light"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+</RelativeLayout>

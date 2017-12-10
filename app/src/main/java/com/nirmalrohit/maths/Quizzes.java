@@ -19,6 +19,12 @@ public class Quizzes extends AppCompatActivity {
         intent.putExtra("type", index);
         intent.putExtra("quiz", true);
 
+        //System.out.println("TYPE INDEX: " + index);
+
         startActivity(intent);
+    }
+
+    public void doNothing(View view){
+
     }
 }

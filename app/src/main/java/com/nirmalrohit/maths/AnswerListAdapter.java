@@ -28,7 +28,9 @@ public class AnswerListAdapter extends BaseAdapter {
     }
 
     private class ViewHolder {
+        TextView questionNo;
         TextView question;
+        TextView answerLabel;
         TextView answer;
         LinearLayout.LayoutParams params;
     }
@@ -56,7 +58,9 @@ public class AnswerListAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.activity_answers_list, viewGroup, false);
 
             final ViewHolder holder = new ViewHolder();
+            holder.questionNo = (TextView) convertView.findViewById(R.id.textView_questionNo);
             holder.question = (TextView) convertView.findViewById(R.id.textView_question);
+            holder.answerLabel = (TextView) convertView.findViewById(R.id.textView_answerLabel);
             holder.answer = (TextView) convertView.findViewById(R.id.textView_answer);
             holder.params = (LinearLayout.LayoutParams) holder.question.getLayoutParams();
             convertView.setTag(holder);
@@ -64,7 +68,8 @@ public class AnswerListAdapter extends BaseAdapter {
         final ViewHolder holder = (ViewHolder) convertView.getTag();
         HashMap<String, Object> item = getItem(position);
 
-        holder.question.setText(position + 1 + ". " + getQuestion(item));
+        holder.questionNo.setText(Integer.toString(position + 1));
+        holder.question.setText(getQuestion(item));
         holder.answer.setText(" " + getUserAnswer(item));
         setQAStyle(item, holder);
 
@@ -92,18 +97,22 @@ public class AnswerListAdapter extends BaseAdapter {
         } else {
             return "";
         }
-
-
     }
 
     private void setQAStyle (HashMap<String, Object> item, ViewHolder holder) {
         String correctAnswer = getCorrectAnswer(item);
         String yourAnswerIndex = getUserAnswer(item);
 
+        int color = mContext.getResources().getColor(R.color.coloBlack50);
+
         if (!Objects.equals(yourAnswerIndex, correctAnswer)) {
-            holder.question.setTextColor(mContext.getResources().getColor(R.color.coloWrongAns));
-            holder.answer.setTextColor(mContext.getResources().getColor(R.color.coloWrongAns));
+            color = mContext.getResources().getColor(R.color.coloWrongAns);
         }
+
+        holder.questionNo.setShadowLayer(2, 0, 0, color);
+        holder.answerLabel.setTextColor(color);
+        holder.question.setTextColor(color);
+        holder.answer.setTextColor(color);
 
         holder.question.setLayoutParams(holder.params);
         holder.answer.setLayoutParams(holder.params);
