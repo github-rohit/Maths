@@ -1,30 +1,26 @@
 package com.nirmalrohit.maths;
 
-import android.graphics.drawable.ColorDrawable;
+import android.speech.tts.TextToSpeech;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.TabHost;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Locale;
 
 public class TimesTables extends AppCompatActivity {
 
@@ -38,8 +34,6 @@ public class TimesTables extends AppCompatActivity {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private final int MAX = 20;
-    private GenerateQA generateQA;
-    private HashMap<String, Integer> styleMap;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -60,17 +54,18 @@ public class TimesTables extends AppCompatActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        String[] numberString = getResources().getStringArray(R.array.times_tables);
 
         for (int i = 1; i <= MAX; i++ ) {
             TabLayout.Tab tab = tabLayout.newTab();
-            tab.setText(Integer.toString(i));
+            tab.setText(numberString[i]);
 
             tabLayout.addTab(tab);
         }
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
-
+        mViewPager.setCurrentItem(9);
     }
 
     /**
@@ -82,6 +77,8 @@ public class TimesTables extends AppCompatActivity {
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
+
+        private TextToSpeech tts;
 
         public PlaceholderFragment() {
         }
@@ -102,17 +99,75 @@ public class TimesTables extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_times_tables, container, false);
             ListView list = (ListView) rootView.findViewById(R.id.listView_table);
+            final int currentNumber =  getArguments().getInt(ARG_SECTION_NUMBER);
             ArrayList<String> items = new ArrayList<String>();
+            final ArrayList<String> itemsToSpeak = new ArrayList<String>();
+
+            tts = new TextToSpeech(getActivity().getApplicationContext(), new TextToSpeech.OnInitListener() {
+                @Override
+                public void onInit(int status) {
+                    if (status == TextToSpeech.SUCCESS) {
+                        tts.setLanguage(Locale.US);
+                    } else {
+
+                    }
+                }
+            });
 
             for (int i = 1; i <= 10; i++ ) {
-                String step = getArguments().getInt(ARG_SECTION_NUMBER) + " X " + i + " = " + getArguments().getInt(ARG_SECTION_NUMBER)*i;
+                String step = currentNumber + " X " + i + " = " + currentNumber*i;
                 items.add(step);
+                itemsToSpeak.add(currentNumber + " multiplied by " + i + "equals to" + currentNumber*i);
             }
 
             list.setAdapter(new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.table_row, items));
-            list.setOnItemClickListener(null);
+            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    tts.speak(itemsToSpeak.get(i), TextToSpeech.QUEUE_FLUSH, null);
+                }
+            });
 
             return rootView;
+        }
+
+        @Override
+        public void setUserVisibleHint(boolean isVisibleToUser) {
+            super.setUserVisibleHint(isVisibleToUser);
+
+            // Make sure that we are currently visible
+            if (this.isVisible()) {
+                // If we are becoming invisible, then...
+                if (!isVisibleToUser) {
+                    stopTTS();
+                }
+            }
+        }
+
+        @Override
+        public void onPause () {
+            super.onPause();
+            stopTTS();
+        }
+
+        @Override
+        public void onStop () {
+            super.onStop();
+            stopTTS();
+        }
+
+        @Override
+        public void onDestroy() {
+            super.onDestroy();
+            stopTTS();
+        }
+
+        private void stopTTS () {
+
+            if (tts != null) {
+                tts.stop();
+            }
+
         }
     }
 
@@ -136,7 +191,7 @@ public class TimesTables extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 20;
+            return MAX;
         }
     }
 }

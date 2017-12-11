@@ -27,7 +27,7 @@ import static java.security.AccessController.getContext;
 
 public class Quiz extends AppCompatActivity {
 
-    private final int TIMER_SEC = 5100;
+    private final int TIMER_SEC = 30100;
 
     private TextView textViewTimer;
     private TextView textView_questionSymbol;
@@ -188,6 +188,13 @@ public class Quiz extends AppCompatActivity {
     public void onRestart() {
         super.onRestart();
         quizTimer(millisUntilRemaining);
+    }
+
+    @Override
+    public void onPause () {
+        super.onPause();
+
+        countDownTimer.cancel();
     }
 
     @Override

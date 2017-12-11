@@ -39,7 +39,7 @@ public class QuizResult extends AppCompatActivity {
 
         questionList = (ArrayList<HashMap<String, Object>>) getIntent().getSerializableExtra("questions");
 
-        viewTotalScore.setText(Integer.toString(type * correctCount));
+        viewTotalScore.setText(Integer.toString(max/5 * correctCount));
 
         viewCorrectCount.setText(Integer.toString(correctCount));
         viewWrongCount.setText(Integer.toString(wrongCount));
