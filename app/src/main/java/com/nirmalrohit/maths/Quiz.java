@@ -36,7 +36,7 @@ public class Quiz extends AppCompatActivity {
     private TextView textView_score;
     private ProgressBar progressBar;
 
-    RelativeLayout layout;
+    private RelativeLayout layout;
     private GridLayout answerLayout;
 
     private CountDownTimer countDownTimer;

@@ -89,12 +89,15 @@ public class QuizResult extends AppCompatActivity {
         alertDialogObject.show();
     }
 
+//    public void shareIt(View view) {
+//        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+//        sharingIntent.setType("text/plain");
+//        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "AndroidSolved");
+//        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Now Learn Android with AndroidSolved clicke here to visit https://androidsolved.wordpress.com/ ");
+//        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+//    }
+
     public void close (View view) {
-        Intent intent = new Intent(QuizResult.this, Quizzes.class);
-        intent.putExtra("type", 5);
-
         finish();
-
-        startActivity(intent);
     }
 }
