@@ -48,6 +48,7 @@ public class Quiz extends AppCompatActivity {
     private int millisUntilRemaining;
     private GenerateQA generateQA;
     private Boolean isRandom = false;
+    private Boolean isPause = false;
     private Random random;
 
     private HashMap<String, Integer> styleMap;
@@ -185,6 +186,14 @@ public class Quiz extends AppCompatActivity {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        if (isPause) {
+            quizTimer(millisUntilRemaining);
+        }
+    }
+
+    @Override
     public void onRestart() {
         super.onRestart();
         quizTimer(millisUntilRemaining);
@@ -193,7 +202,7 @@ public class Quiz extends AppCompatActivity {
     @Override
     public void onPause () {
         super.onPause();
-
+        isPause = true;
         countDownTimer.cancel();
     }
 

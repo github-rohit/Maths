@@ -2,6 +2,8 @@ package com.nirmalrohit.maths;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.media.MediaPlayer;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -130,20 +132,24 @@ public class GenerateQA {
 
     public ArrayList getAnswers() {
         int answer = getCorrectAnswer();
+        int ansLen = String.valueOf(answer).length();
 
         correctAnsIndex = random.nextInt(MAX_ANS);
         answers.clear();
 
         for (int i = 0; i < MAX_ANS; i++) {
-            int num;
+            int num = 0;
+
             if (i == correctAnsIndex) {
                 num = answer;
-            } else {
+            } else if (questionType != 3 || ansLen == 1) {
                 num = answer + random.nextInt(MAX_ANS) - random.nextInt(MAX_ANS);
 
                 while (num == answer || answers.indexOf(num) != -1 || num < 0) {
                     num = answer + random.nextInt(MAX_ANS) - random.nextInt(MAX_ANS);
                 }
+            } else if (questionType == 3) {
+                num = getMultipleAnswer(answer, ansLen);
             }
 
             answers.add(i, num);
@@ -196,6 +202,20 @@ public class GenerateQA {
         }
 
         setIsAnswered(true);
+
+        return isAnswer;
+    }
+
+
+    public Boolean isAnswerCorrectly(View view) {
+        int index = Integer.parseInt( view.getTag().toString() );
+        Boolean isAnswer;
+
+        if (index == correctAnsIndex) {
+            isAnswer = true;
+        } else {
+            isAnswer = false;
+        }
 
         return isAnswer;
     }
@@ -307,6 +327,45 @@ public class GenerateQA {
         }
 
         return answer;
+    }
+
+    private int getMultipleAnswer (int answer, int ansLen) {
+        int num = 0;
+        int digit = 10;
+        int ran = random.nextInt(2);
+        int inc = 0;
+        int curLen = 0;
+
+        if (ansLen > 2) {
+            digit = 100;
+        }
+
+        if (ran == 0) {
+            num = answer - digit;
+        } else {
+            num = answer + digit;
+        }
+
+        curLen = String.valueOf(num).length();
+
+        while (answers.indexOf(num) != -1 ||   num < 0 || curLen != ansLen ) {
+            curLen = String.valueOf(num).length();
+            ++inc;
+
+            if (num < 0 || curLen < ansLen) {
+                ran = 1;
+            } else if (curLen > ansLen) {
+                ran = 0;
+            }
+
+            if (ran == 0) {
+                num = answer - digit * inc;
+            } else {
+                num = answer + digit * inc;
+            }
+        }
+
+        return num;
     }
 
     private void hideAnswerButtons (View view, Boolean animate) {

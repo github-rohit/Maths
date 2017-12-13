@@ -1,6 +1,7 @@
 package com.nirmalrohit.maths;
 
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Calculus extends AppCompatActivity {
+
+    private MediaPlayer mediaPlayer;
 
     private TextView textView_questionSymbol;
     private TextView textView_firstNum;
@@ -71,10 +74,33 @@ public class Calculus extends AppCompatActivity {
         generateQA.setAnswersView(answerLayout);
     }
 
+    private void playButtonSound (View view) {
+
+        stopButtonSound();
+
+        if (generateQA.isAnswerCorrectly(view) == true) {
+            mediaPlayer =  MediaPlayer.create(this, R.raw.correct_answer);
+        } else {
+            mediaPlayer =  MediaPlayer.create(this, R.raw.wrong_answer);
+        }
+
+        mediaPlayer.start();
+    }
+
+    private void stopButtonSound() {
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
+
     public void checkAnswer (View view) {
+
         if (generateQA.getIsAnsweredCorrectly() == true) {
             return;
         }
+
+        playButtonSound(view);
 
         generateQA.setAnsweredView(view, true);
         generateQA.setProgressTextView(textView_score);
@@ -85,6 +111,10 @@ public class Calculus extends AppCompatActivity {
         if (generateQA.getIsAnswered() == false) {
             generateQA.setProgressTextView(textView_score);
         }
+
+        stopButtonSound();
+        mediaPlayer =  MediaPlayer.create(this, R.raw.next_question);
+        mediaPlayer.start();
 
         setQuestionView();
         setAnswerView();
