@@ -45,6 +45,7 @@ public class Quiz extends AppCompatActivity {
     private int max;
     private int type;
     private int bgColor;
+    private int bgImage;
     private int millisUntilRemaining;
     private GenerateQA generateQA;
     private Boolean isRandom = false;
@@ -131,9 +132,10 @@ public class Quiz extends AppCompatActivity {
     private void setActivityStyle () {
         styleMap = generateQA.getQAStyle();
         bgColor = ContextCompat.getColor(this, styleMap.get("bgColor"));
+        bgImage = styleMap.get("bgImage");
 
         textView_questionSymbol.setText(styleMap.get("symbol"));
-        layout.setBackgroundColor(bgColor);
+        layout.setBackgroundResource(bgImage);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(bgColor));
         setTitle(styleMap.get("title"));
     }

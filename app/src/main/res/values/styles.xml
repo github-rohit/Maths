@@ -4,14 +4,15 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">#000000</item>
+        <item name="colorPrimaryDark">@color/coloBlack</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="actionBarStyle">@style/ActionBarTheme</item>
         <item name="buttonStyle">@style/ButtonStyle</item>
+        <item name="android:fontFamily">@font/coming_home</item>
     </style>
 
     <style name="ActionBarTheme" parent="Base.Widget.AppCompat.Light.ActionBar.Solid">
-        <item name="elevation">2dp</item>
+        <item name="elevation">1dp</item>
     </style>
 
     <style name="ButtonStyle" parent="Base.Widget.AppCompat.Button.Colored">
@@ -109,6 +110,12 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
         <item name="android:drawablePadding">@dimen/activity_vertical_margin_sm</item>
+    </style>
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/coloBlack20</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

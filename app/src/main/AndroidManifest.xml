@@ -15,6 +15,7 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
+            android:resizeableActivity="false"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,23 +26,28 @@
         <activity
             android:name=".Quiz"
             android:label="@string/quiz"
+            android:resizeableActivity="false"
             android:screenOrientation="portrait" />
         <activity android:name=".Calculus" />
         <activity
             android:name=".TimesTables"
             android:label="@string/title_activity_times_tables"
             android:theme="@style/AppTheme.NoActionBar"
+            android:resizeableActivity="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Level"
             android:label="@string/level"
+            android:resizeableActivity="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Quizzes"
             android:theme="@style/AppTheme.NoActionBar"
+            android:resizeableActivity="false"
             android:screenOrientation="portrait" />
         <activity android:name=".QuizResult"
             android:theme="@style/AppTheme.NoActionBar"
+            android:resizeableActivity="false"
             android:screenOrientation="portrait"/>
     </application>
 

@@ -225,30 +225,35 @@ public class GenerateQA {
         HashMap<String, Integer> style = new HashMap<String, Integer>();
         symbol = R.string.symbol_addition;
         int bgColor = R.color.colorPrimary;
+        int bgImage = R.color.colorPrimary;
         int title = R.string.app_name;
 
         switch (questionType) {
             case 1: {
                 symbol = R.string.symbol_addition;
                 bgColor = R.color.colorTwo;
+                bgImage = R.drawable.image_two;
                 title = R.string.addition;
                 break;
             }
             case 2: {
                 symbol = R.string.symbol_subtraction;
                 bgColor = R.color.colorThree;
+                bgImage = R.drawable.image_three;
                 title = R.string.subtraction;
                 break;
             }
             case 3: {
                 symbol = R.string.symbol_multiplication;
                 bgColor = R.color.colorFour;
+                bgImage = R.drawable.image_four;
                 title = R.string.multiplication;
                 break;
             }
             case 4: {
                 symbol = R.string.symbol_divide;
                 bgColor = R.color.colorFive;
+                bgImage = R.drawable.image_five;
                 title = R.string.divide;
                 break;
             }
@@ -258,6 +263,7 @@ public class GenerateQA {
 
         style.put("symbol", symbol);
         style.put("bgColor", bgColor);
+        style.put("bgImage", bgImage);
         style.put("title", title);
 
         return style;

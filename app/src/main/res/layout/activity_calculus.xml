@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorOne"
+    android:background="@drawable/image_two"
     tools:context=".Calculus">
 
     <ScrollView
@@ -48,7 +48,7 @@
                     android:text="00" />
 
             </GridLayout>
-
+            <View style="@style/Divider"/>
             <GridLayout
                 android:id="@+id/gridLayoutAnswers"
                 android:layout_width="match_parent"
