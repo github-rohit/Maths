@@ -1,8 +1,10 @@
 package com.nirmalrohit.maths;
 
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.CountDownTimer;
 import android.support.v4.content.ContextCompat;
@@ -137,7 +139,7 @@ public class Quiz extends AppCompatActivity {
         textView_questionSymbol.setText(styleMap.get("symbol"));
         layout.setBackgroundResource(bgImage);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(bgColor));
-        setTitle(styleMap.get("title"));
+        changeTypeFace(styleMap.get("title"));
     }
 
     private int getQuestionType () {
@@ -168,6 +170,30 @@ public class Quiz extends AppCompatActivity {
         item.put("your_answer", answerIndex);
 
         questions.set(index, item);
+    }
+
+    private void changeTypeFace(int title) {
+        TextView textView = new TextView(getApplicationContext());
+
+        // Create a LayoutParams for TextView
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.MATCH_PARENT, // Width of TextView
+                RelativeLayout.LayoutParams.WRAP_CONTENT); // Height of TextView
+        textView.setLayoutParams(lp);
+        textView.setText(title); // ActionBar title text
+
+        // Set the text color of TextView to black
+        // Set the monospace font for TextView text
+        // This will change ActionBar title text font
+        Typeface typeface = Typeface.create("casual", Typeface.BOLD);
+        textView.setTypeface(typeface);
+        textView.setTextColor(getResources().getColor(R.color.colorWhite));
+        textView.setTextSize(20);
+        // Set the ActionBar display option
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+
+        // Finally, set the newly created TextView as ActionBar custom view
+        getSupportActionBar().setCustomView(textView);
     }
 
     public void checkAnswer(View view) {

@@ -1,104 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_quiz"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_img"
+    android:background="@drawable/home_bg"
+    android:fillViewport="true"
     tools:context=".Quizzes">
 
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:weightSum="3"
-    android:layout_alignParentTop="true"
-    android:layout_alignParentStart="true">
+    android:padding="@dimen/activity_vertical_margin_sm"
+    android:weightSum="5">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        android:layout_weight="1"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+    <Button
+        android:id="@+id/btn_addition"
+        style="@style/QuizMenuButtonStyle"
+        android:background="@drawable/button_addition"
+        android:text="@string/addition"
+        android:tag="1"/>
 
-        <ImageButton
-            android:id="@+id/btn_addition"
-            style="@style/QuizMenuButtonStyle"
-            android:background="@color/colorTwo"
-            android:tag="1"
-            app:srcCompat="@drawable/symbol_addition"
-            android:scaleType="fitCenter"/>
+    <Button
+        android:id="@+id/btn_sub"
+        style="@style/QuizMenuButtonStyle"
+        android:background="@drawable/button_subtraction"
+        android:text="@string/subtraction"
+        android:tag="2" />
 
-        <ImageButton
-            android:id="@+id/btn_sub"
-            style="@style/QuizMenuButtonStyle"
-            android:background="@color/colorThree"
-            android:tag="2"
-            app:srcCompat="@drawable/symbol_subtraction"
-            android:scaleType="fitCenter" />
+    <Button
+        android:id="@+id/btn_mul"
+        style="@style/QuizMenuButtonStyle"
+        android:background="@drawable/button_multiplication"
+        android:text="@string/multiplication"
+        android:tag="3" />
 
+    <Button
+        android:id="@+id/btn_div"
+        style="@style/QuizMenuButtonStyle"
+        android:background="@drawable/button_divide"
+        android:text="@string/divide"
+        android:tag="4"/>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
-
-        <ImageButton
-            android:id="@+id/btn_mul"
-            style="@style/QuizMenuButtonStyle"
-            android:background="@color/colorFour"
-            android:tag="3"
-            app:srcCompat="@drawable/symbol_multiplication"
-            android:scaleType="fitCenter" />
-
-        <ImageButton
-            android:id="@+id/btn_div"
-            style="@style/QuizMenuButtonStyle"
-            android:background="@color/colorFive"
-            android:tag="4"
-            app:srcCompat="@drawable/symbol_divide"
-            android:scaleType="fitCenter" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
-
-        <ImageButton
-            android:id="@+id/btn_test"
-            style="@style/QuizMenuButtonStyle"
-            android:background="@color/colorWhite"
-            android:tag="5"
-            app:srcCompat="@drawable/symbol_test"
-            android:scaleType="fitCenter" />
-
-        <ImageButton
-            style="@style/QuizMenuButtonStyle"
-            android:background="@color/coloTransparent"
-            android:onClick="doNothing"
-            app:srcCompat="@drawable/blank" />
-
-
-
-    </LinearLayout>
+    <Button
+        android:id="@+id/btn_test"
+        style="@style/QuizMenuLightButtonStyle"
+        android:background="@drawable/button_quiz"
+        android:text="@string/random"
+        android:tag="5" />
 
 </LinearLayout>
 
-</RelativeLayout>
+</ScrollView>
 

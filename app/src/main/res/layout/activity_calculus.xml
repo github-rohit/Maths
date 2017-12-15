@@ -152,6 +152,7 @@
             android:layout_weight="1"
             android:onClick="nextQuestion"
             android:text="@string/next"
+            android:soundEffectsEnabled="false"
             android:visibility="gone" />
     </LinearLayout>
 </RelativeLayout>

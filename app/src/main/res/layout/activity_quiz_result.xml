@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:text="@string/score"
-        android:fontFamily="@font/stencil_regular"
         android:textAlignment="center"
         android:textColor="@color/coloBlack"
         android:textSize="60sp" />
@@ -38,7 +37,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                android:fontFamily="@font/stencil_bold"
                 android:textAlignment="center"
                 android:textSize="90sp" />
 
@@ -48,7 +46,6 @@
                 android:layout_below="@+id/textView_scoreTotal"
                 android:id="@+id/textView_scoreTotalLabel"
                 android:gravity="center"
-                android:fontFamily="@font/stencil_bold"
                 android:layout_marginTop="-30dp"
                 android:layout_marginBottom="@dimen/activity_vertical_margin_m"
                 android:text="@string/score" />

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -16,13 +15,14 @@
             android:id="@+id/textView_questionNo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="-18dp"
-            android:layout_marginTop="-17dp"
+            android:layout_marginBottom="-20dp"
+            android:layout_marginTop="-18dp"
             android:gravity="right|clip_vertical"
+            android:fontFamily="Roboto"
             android:shadowColor="@color/coloBlack"
             android:shadowRadius="1"
-            android:textColor="#FFFFFF"
-            android:textSize="72sp"
+            android:textColor="@color/colorWhite"
+            android:textSize="64dp"
             android:textStyle="bold" />
     </RelativeLayout>
 

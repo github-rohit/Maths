@@ -5,4 +5,6 @@
     android:padding="@dimen/activity_vertical_margin"
     android:textAlignment="center"
     android:textColor="@color/colorWhite"
-    android:textSize="32sp" />
+    android:fontFamily="casual"
+    android:textStyle="bold"
+    android:textSize="24sp" />
