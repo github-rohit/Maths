@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<item>
+    <layer-list>
+        <item
+            android:height="24dp"
+            android:width="24dp"
+            android:gravity="center">
+            <bitmap android:src="@drawable/correct_answer"></bitmap>
+        </item>
+    </layer-list>
+</item>
+</selector>

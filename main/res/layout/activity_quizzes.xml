@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_quiz"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/home_bg"
+    android:fillViewport="true"
+    tools:context=".Quizzes">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_vertical_margin_sm"
+    android:weightSum="5">
+
+    <Button
+        android:id="@+id/btn_addition"
+        style="@style/QuizMenuButtonStyle"
+        android:background="@drawable/button_addition"
+        android:text="@string/addition"
+        android:tag="1"/>
+
+    <Button
+        android:id="@+id/btn_sub"
+        style="@style/QuizMenuButtonStyle"
+        android:background="@drawable/button_subtraction"
+        android:text="@string/subtraction"
+        android:tag="2" />
+
+    <Button
+        android:id="@+id/btn_mul"
+        style="@style/QuizMenuButtonStyle"
+        android:background="@drawable/button_multiplication"
+        android:text="@string/multiplication"
+        android:tag="3" />
+
+    <Button
+        android:id="@+id/btn_div"
+        style="@style/QuizMenuButtonStyle"
+        android:background="@drawable/button_divide"
+        android:text="@string/divide"
+        android:tag="4"/>
+
+    <Button
+        android:id="@+id/btn_test"
+        style="@style/QuizMenuLightButtonStyle"
+        android:background="@drawable/button_quiz"
+        android:text="@string/random"
+        android:tag="5" />
+
+</LinearLayout>
+
+</ScrollView>
+

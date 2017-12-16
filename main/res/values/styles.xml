@@ -1,0 +1,147 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/coloBlack</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionBarStyle">@style/ActionBarTheme</item>
+        <item name="buttonStyle">@style/ButtonStyle</item>
+        <item name="android:fontFamily">casual</item>
+    </style>
+
+    <style name="ActionBarTheme" parent="Base.Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="elevation">1dp</item>
+    </style>
+
+    <style name="ButtonStyle" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="android:background">@drawable/ripple_effect</item>
+    </style>
+
+    <style name="AppTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/colorWhite</item>
+        <item name="tabIndicatorHeight">0dp</item>
+        <item name="tabBackground">@drawable/tab_color_selector</item>
+        <item name="tabTextAppearance">@style/AppTabTextAppearance</item>
+        <item name="tabSelectedTextColor">@color/colorWhite</item>
+    </style>
+    <!-- for text -->
+    <style name="AppTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:fontFamily">casual</item>
+    </style>
+
+    <style name="ProgressBar" parent="@android:style/Widget.Holo.Light.ProgressBar.Horizontal">
+        <item name="android:progressTint">@color/coloBlack20</item>
+        <item name="android:progressBackgroundTint">@color/coloTransparent</item>
+    </style>
+
+    <style name="MainMenuButtonStyle">
+        <item name="android:background">@drawable/button</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/coming_home</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:onClick">selectModule</item>
+        <item name="android:layout_margin">@dimen/activity_vertical_margin_sm</item>
+    </style>
+
+    <style name="MainMenuLightButtonStyle" parent="MainMenuButtonStyle">
+        <item name="android:textColor">@color/coloBlack</item>
+    </style>
+
+    <style name="QuizMenuButtonStyle" parent="@style/MainMenuButtonStyle">
+        <item name="android:onClick">selectQuizModule</item>
+    </style>
+
+    <style name="QuizMenuLightButtonStyle" parent="QuizMenuButtonStyle">
+        <item name="android:textColor">@color/coloBlack</item>
+    </style>
+
+    <style name="CalculusQuestionStyle">
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:textAlignment">viewEnd</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">48sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CalculusButtonStyle">
+        <item name="android:layout_columnSpan">1</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:background">@drawable/ripple_effect</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">@dimen/activity_horizontal_margin_d</item>
+    </style>
+
+    <style name="LevelTitle">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:fontFamily">casual</item>
+        <item name="android:layout_marginBottom">@dimen/activity_horizontal_margin_d</item>
+    </style>
+
+    <style name="LevelButtonStyle" parent="@style/CalculusButtonStyle">
+        <item name="android:background">@drawable/white_ripple</item>
+        <item name="android:textColor">@color/coloBlack</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/coming_home</item>
+        <item name="android:layout_marginBottom">@dimen/activity_vertical_margin</item>
+    </style>
+
+    <style name="CalculusAnswerButtonStyle" parent="@style/CalculusButtonStyle">
+        <item name="android:onClick">checkAnswer</item>
+        <item name="android:soundEffectsEnabled">false</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="ScoreLabelStyle">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="ScoreCountStyle" parent="@style/ScoreLabelStyle">
+        <item name="android:textSize">60sp</item>
+        <item name="android:shadowColor">@color/coloBlack</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+
+    <style name="ScoreButtonStyle" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:drawablePadding">@dimen/activity_vertical_margin_sm</item>
+    </style>
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/coloBlack20</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>
+

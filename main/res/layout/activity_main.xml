@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/home_bg"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_vertical_margin_sm"
+        android:weightSum="6">
+
+        <Button
+            android:id="@+id/btn_times_tables"
+            style="@style/MainMenuButtonStyle"
+            android:background="@drawable/button_table"
+            android:tag="0"
+            android:text="@string/times_tables"/>
+
+        <Button
+            android:id="@+id/btn_addition"
+            style="@style/MainMenuButtonStyle"
+            android:background="@drawable/button_addition"
+            android:tag="1"
+            android:text="@string/addition"/>
+
+        <Button
+            android:id="@+id/btn_sub"
+            style="@style/MainMenuButtonStyle"
+            android:background="@drawable/button_subtraction"
+            android:tag="2"
+            android:text="@string/subtraction" />
+
+        <Button
+            android:id="@+id/btn_mul"
+            style="@style/MainMenuButtonStyle"
+            android:background="@drawable/button_multiplication"
+            android:tag="3"
+            android:text="@string/multiplication" />
+
+        <Button
+            android:id="@+id/btn_div"
+            style="@style/MainMenuButtonStyle"
+            android:background="@drawable/button_divide"
+            android:tag="4"
+            android:text="@string/divide" />
+
+        <Button
+            android:id="@+id/btn_test"
+            style="@style/MainMenuLightButtonStyle"
+            android:background="@drawable/button_quiz"
+            android:tag="5"
+            android:text="@string/quiz" />
+
+    </LinearLayout>
+
+</ScrollView>
+
