@@ -84,12 +84,22 @@
         <item name="android:padding">@dimen/activity_horizontal_margin_d</item>
     </style>
 
+    <style name="LevelTitle">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:fontFamily">casual</item>
+        <item name="android:layout_marginBottom">@dimen/activity_horizontal_margin_d</item>
+    </style>
+
     <style name="LevelButtonStyle" parent="@style/CalculusButtonStyle">
         <item name="android:background">@drawable/white_ripple</item>
         <item name="android:textColor">@color/coloBlack</item>
-        <item name="android:onClick">startLearning</item>
         <item name="android:textSize">24sp</item>
-        <item name="android:textStyle">normal</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/coming_home</item>
+        <item name="android:layout_marginBottom">@dimen/activity_vertical_margin</item>
     </style>
 
     <style name="CalculusAnswerButtonStyle" parent="@style/CalculusButtonStyle">

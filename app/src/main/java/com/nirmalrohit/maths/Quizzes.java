@@ -11,27 +11,16 @@ import android.widget.TextView;
 
 public class Quizzes extends AppCompatActivity {
 
+    private Level dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quizzes);
 
-        TextView textView = new TextView(getApplicationContext());
+        StyleUtils styleUtils = new StyleUtils(this);
+        TextView textView = styleUtils.getActionBarCustomTitleView(R.string.select_category, R.color.coloBlack, "casual");
 
-        // Create a LayoutParams for TextView
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.MATCH_PARENT, // Width of TextView
-                RelativeLayout.LayoutParams.WRAP_CONTENT); // Height of TextView
-        textView.setLayoutParams(lp);
-        textView.setText(R.string.select_category); // ActionBar title text
-
-        // Set the text color of TextView to black
-        // Set the monospace font for TextView text
-        // This will change ActionBar title text font
-        Typeface typeface = Typeface.create("casual", Typeface.BOLD);
-        textView.setTypeface(typeface);
-        textView.setTextColor(getResources().getColor(R.color.coloBlack));
-        textView.setTextSize(20);
         // Set the ActionBar display option
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 
@@ -41,13 +30,10 @@ public class Quizzes extends AppCompatActivity {
 
     public void selectQuizModule(View view) {
         int index = Integer.parseInt( view.getTag().toString() );
-        Intent intent = new Intent(Quizzes.this, Level.class);
-        intent.putExtra("type", index);
-        intent.putExtra("quiz", true);
+        Intent intent;
 
-        //System.out.println("TYPE INDEX: " + index);
-
-        startActivity(intent);
+        dialog = new Level(this, index, true);
+        dialog.show();
     }
 
     public void doNothing(View view){

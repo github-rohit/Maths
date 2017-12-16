@@ -53,6 +53,7 @@ public class Quiz extends AppCompatActivity {
     private Boolean isRandom = false;
     private Boolean isPause = false;
     private Random random;
+    private StyleUtils styleUtils;
 
     private HashMap<String, Integer> styleMap;
 
@@ -60,6 +61,7 @@ public class Quiz extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculus);
+        styleUtils = new StyleUtils(Quiz.this);
 
         max = getIntent().getExtras().getInt("max");
         type = getIntent().getExtras().getInt("type");
@@ -173,23 +175,8 @@ public class Quiz extends AppCompatActivity {
     }
 
     private void changeTypeFace(int title) {
-        TextView textView = new TextView(getApplicationContext());
 
-        // Create a LayoutParams for TextView
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.MATCH_PARENT, // Width of TextView
-                RelativeLayout.LayoutParams.WRAP_CONTENT); // Height of TextView
-        textView.setLayoutParams(lp);
-        textView.setText(title); // ActionBar title text
-
-        // Set the text color of TextView to black
-        // Set the monospace font for TextView text
-        // This will change ActionBar title text font
-        Typeface typeface = Typeface.create("casual", Typeface.BOLD);
-        textView.setTypeface(typeface);
-        textView.setTextColor(getResources().getColor(R.color.colorWhite));
-        textView.setTextSize(20);
-        // Set the ActionBar display option
+        TextView textView = styleUtils.getActionBarCustomTitleView(title, R.color.colorWhite, "casual");
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 
         // Finally, set the newly created TextView as ActionBar custom view

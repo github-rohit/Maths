@@ -18,6 +18,7 @@
     <string name="close">Close</string>
     <string name="share">Share</string>
     <string name="random">Random</string>
+    <string name="choose_difficulty_level">Choose Difficulty Level</string>
 
 
     <string name="level">Number Range</string>
@@ -31,6 +32,11 @@
     <string name="level_0_15">0 to 15</string>
     <string name="level_0_20">0 to 20</string>
     <string name="level_0_25">0 to 25</string>
+
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+    <string name="expert">Expert</string>
 
     <string name="symbol_times_tables">=</string>
     <string name="symbol_addition">+</string>

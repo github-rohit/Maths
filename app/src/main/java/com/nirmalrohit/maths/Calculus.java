@@ -34,6 +34,7 @@ public class Calculus extends AppCompatActivity {
     private int bgColor;
     private int bgImage;
     private GenerateQA generateQA;
+    private StyleUtils styleUtils;
 
     private HashMap<String, Integer> styleMap;
 
@@ -49,6 +50,7 @@ public class Calculus extends AppCompatActivity {
         findViewById(R.id.button_next).setVisibility(View.VISIBLE);
 
         generateQA = new GenerateQA(max, type);
+        styleUtils = new StyleUtils(this);
 
         answerLayout = findViewById(R.id.gridLayoutAnswers);
         textView_questionSymbol = findViewById(R.id.text_symbol);
@@ -72,22 +74,7 @@ public class Calculus extends AppCompatActivity {
     }
 
     private void changeTypeFace(int title) {
-        TextView textView = new TextView(getApplicationContext());
-
-        // Create a LayoutParams for TextView
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.MATCH_PARENT, // Width of TextView
-                RelativeLayout.LayoutParams.WRAP_CONTENT); // Height of TextView
-        textView.setLayoutParams(lp);
-        textView.setText(title); // ActionBar title text
-
-        // Set the text color of TextView to black
-        // Set the monospace font for TextView text
-        // This will change ActionBar title text font
-        Typeface typeface = Typeface.create("casual", Typeface.BOLD);
-        textView.setTypeface(typeface);
-        textView.setTextColor(getResources().getColor(R.color.colorWhite));
-        textView.setTextSize(20);
+        TextView textView = styleUtils.getActionBarCustomTitleView(title, R.color.colorWhite, "casual");
         // Set the ActionBar display option
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 
