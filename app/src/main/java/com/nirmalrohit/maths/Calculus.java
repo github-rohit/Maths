@@ -8,6 +8,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -16,8 +19,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.zip.Inflater;
 
 public class Calculus extends AppCompatActivity {
+
+    final private int PLAY_NEXT_BTN_SOUND = 1;
 
     private MediaPlayer mediaPlayer;
 
@@ -35,6 +41,7 @@ public class Calculus extends AppCompatActivity {
     private int bgImage;
     private GenerateQA generateQA;
     private StyleUtils styleUtils;
+    private AppSettings appSettings;
 
     private HashMap<String, Integer> styleMap;
 
@@ -51,6 +58,7 @@ public class Calculus extends AppCompatActivity {
 
         generateQA = new GenerateQA(max, type);
         styleUtils = new StyleUtils(this);
+        appSettings = new AppSettings(this);
 
         answerLayout = findViewById(R.id.gridLayoutAnswers);
         textView_questionSymbol = findViewById(R.id.text_symbol);
@@ -73,6 +81,37 @@ public class Calculus extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        Boolean isSound = appSettings.getSound();
+
+        MenuItem itemSound = menu.findItem(R.id.action_sound);
+
+        setSoundIcon(itemSound, isSound);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_sound:
+
+                Boolean isSound = !appSettings.getSound();
+                setSoundIcon(item, isSound);
+
+                appSettings.setSound(isSound);
+
+                return true;
+            default:
+                break;
+        }
+
+        return true;
+    }
+
     private void changeTypeFace(int title) {
         TextView textView = styleUtils.getActionBarCustomTitleView(title, R.color.colorWhite, "casual");
         // Set the ActionBar display option
@@ -90,11 +129,13 @@ public class Calculus extends AppCompatActivity {
         generateQA.setAnswersView(answerLayout);
     }
 
-    private void playButtonSound (View view) {
+    private void playButtonSound (View view, int type) {
 
         stopButtonSound();
 
-        if (generateQA.isAnswerCorrectly(view) == true) {
+        if (type == PLAY_NEXT_BTN_SOUND) {
+            mediaPlayer =  MediaPlayer.create(this, R.raw.next_question);
+        } else if (generateQA.isAnswerCorrectly(view) == true) {
             mediaPlayer =  MediaPlayer.create(this, R.raw.correct_answer);
         } else {
             mediaPlayer =  MediaPlayer.create(this, R.raw.wrong_answer);
@@ -110,13 +151,23 @@ public class Calculus extends AppCompatActivity {
         }
     }
 
+    private void setSoundIcon(MenuItem item, Boolean isSound) {
+        if (isSound) {
+            item.setIcon(R.drawable.ic_volume_up_white);
+        } else {
+            item.setIcon(R.drawable.ic_volume_off_white);
+        }
+    }
+
     public void checkAnswer (View view) {
 
         if (generateQA.getIsAnsweredCorrectly() == true) {
             return;
         }
 
-        playButtonSound(view);
+        if (appSettings.getSound()) {
+            playButtonSound(view, 0);
+        }
 
         generateQA.setAnsweredView(view, true);
         generateQA.setProgressTextView(textView_score);
@@ -128,9 +179,9 @@ public class Calculus extends AppCompatActivity {
             generateQA.setProgressTextView(textView_score);
         }
 
-        stopButtonSound();
-        mediaPlayer =  MediaPlayer.create(this, R.raw.next_question);
-        mediaPlayer.start();
+        if (appSettings.getSound()) {
+            playButtonSound(view, PLAY_NEXT_BTN_SOUND);
+        }
 
         setQuestionView();
         setAnswerView();

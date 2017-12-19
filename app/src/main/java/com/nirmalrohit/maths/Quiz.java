@@ -224,7 +224,7 @@ public class Quiz extends AppCompatActivity {
     @Override
     public void onStop () {
         super.onStop();
-
+        isPause = false;
         countDownTimer.cancel();
     }
 

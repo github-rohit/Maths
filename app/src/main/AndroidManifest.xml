@@ -36,14 +36,9 @@
             android:resizeableActivity="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Level"
-            android:label="@string/level"
-            android:resizeableActivity="false"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".Quizzes"
             android:theme="@style/Theme.AppCompat.DayNight"
-            android:label="@string/select_category"
+            android:label="@string/select_quiz_category"
             android:resizeableActivity="false"
             android:screenOrientation="portrait" />
         <activity android:name=".QuizResult"

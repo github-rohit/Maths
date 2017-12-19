@@ -19,7 +19,7 @@ public class Quizzes extends AppCompatActivity {
         setContentView(R.layout.activity_quizzes);
 
         StyleUtils styleUtils = new StyleUtils(this);
-        TextView textView = styleUtils.getActionBarCustomTitleView(R.string.select_category, R.color.coloBlack, "casual");
+        TextView textView = styleUtils.getActionBarCustomTitleView(R.string.select_quiz_category, R.color.coloBlack, "casual");
 
         // Set the ActionBar display option
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);

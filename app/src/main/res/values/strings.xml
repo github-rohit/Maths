@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Maths</string>
     <string name="select_category">Select Category</string>
+    <string name="select_quiz_category">Select Quiz Category</string>
     <string name="times_tables">Times Tables</string>
     <string name="choose_times_tables">Choose Times Tables</string>
     <string name="tap_to_start">Tap to start</string>
@@ -77,5 +78,7 @@
         <item>nineteen</item>
         <item>twenty</item>
     </string-array>
+
+    <string name="saved_is_sound">is sound</string>
 
 </resources>
