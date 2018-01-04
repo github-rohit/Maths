@@ -20,12 +20,14 @@ public class QuizResult extends AppCompatActivity {
     private int type;
     private ArrayList<HashMap<String, Object>> questionList;
 
+    private TextView viewTotalScore;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_result);
 
-        TextView viewTotalScore = findViewById(R.id.textView_scoreTotal);
+        viewTotalScore = findViewById(R.id.textView_scoreTotal);
         TextView viewCorrectCount = findViewById(R.id.textView_answerCount);
         TextView viewWrongCount = findViewById(R.id.textView_answerWrong);
         TextView viewSkipCount = findViewById(R.id.textView_answerSkip);
@@ -39,7 +41,7 @@ public class QuizResult extends AppCompatActivity {
 
         questionList = (ArrayList<HashMap<String, Object>>) getIntent().getSerializableExtra("questions");
 
-        viewTotalScore.setText(Integer.toString(max/5 * correctCount));
+        setScoreTotal(correctCount, wrongCount);
 
         viewCorrectCount.setText(Integer.toString(correctCount));
         viewWrongCount.setText(Integer.toString(wrongCount));
@@ -89,15 +91,11 @@ public class QuizResult extends AppCompatActivity {
         alertDialogObject.show();
     }
 
-//    public void shareIt(View view) {
-//        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-//        sharingIntent.setType("text/plain");
-//        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "AndroidSolved");
-//        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Now Learn Android with AndroidSolved clicke here to visit https://androidsolved.wordpress.com/ ");
-//        startActivity(Intent.createChooser(sharingIntent, "Share via"));
-//    }
-
     public void close (View view) {
         finish();
+    }
+
+    private void setScoreTotal(int correctCount, int wrongAnswerCount) {
+        viewTotalScore.setText(Integer.toString(2 * correctCount - wrongAnswerCount));
     }
 }
