@@ -20,6 +20,8 @@
     <string name="share">Share</string>
     <string name="random">Random</string>
     <string name="choose_difficulty_level">Choose Difficulty Level</string>
+    <string name="your_progress_card">Your Progress Card</string>
+    <string name="clear_progress_card">Clear Progress Card</string>
 
 
     <string name="level">Number Range</string>
@@ -50,10 +52,7 @@
     <string name="wrong">:( Oops wrong answer.</string>
     <string name="title_activity_times_tables">TimesTables</string>
     <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">Tab 3</string>
+
 
     <string-array name="times_tables">
         <item></item>
@@ -80,5 +79,6 @@
     </string-array>
 
     <string name="saved_is_sound">is sound</string>
+    <string name="title_activity_progress_card">ProgressCard</string>
 
 </resources>

@@ -13,19 +13,26 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class QuizResult extends AppCompatActivity {
     private int max;
     private int type;
+    private int score;
     private ArrayList<HashMap<String, Object>> questionList;
+    private AnswerListAdapter answerListAdapter;
 
     private TextView viewTotalScore;
+
+    private DBUtils dbUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_result);
+
+        dbUtils = new DBUtils(this);
 
         viewTotalScore = findViewById(R.id.textView_scoreTotal);
         TextView viewCorrectCount = findViewById(R.id.textView_answerCount);
@@ -60,7 +67,10 @@ public class QuizResult extends AppCompatActivity {
             btn.setEnabled(false);
             Drawable[] drawables = btn.getCompoundDrawables();
             drawables[1].setAlpha(110);
+        } else {
+            dbUtils.insert(getCatText(), getLevelText(), correctCount, wrongCount, score , Arrays.toString(questionList.toArray()));
         }
+
     }
 
     public void restartQuiz (View view) {
@@ -76,7 +86,7 @@ public class QuizResult extends AppCompatActivity {
 
     public void showResult (View view) {
 
-        AnswerListAdapter answerListAdapter = new AnswerListAdapter(this, questionList);
+        answerListAdapter = new AnswerListAdapter(this, questionList);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this)
                 .setTitle(R.string.your_answers)
@@ -96,6 +106,54 @@ public class QuizResult extends AppCompatActivity {
     }
 
     private void setScoreTotal(int correctCount, int wrongAnswerCount) {
-        viewTotalScore.setText(Integer.toString(2 * correctCount - wrongAnswerCount));
+        score = 2 * correctCount - wrongAnswerCount;
+        viewTotalScore.setText(Integer.toString(score));
+    }
+
+    private String getCatText() {
+        String catText = "";
+
+        switch (type) {
+            case 1:
+                catText = getString(R.string.addition);
+                break;
+            case 2:
+                catText = getString(R.string.subtraction);
+                break;
+            case 3:
+                catText = getString(R.string.multiplication);
+                break;
+            case 4:
+                catText = getString(R.string.divide);
+                break;
+            case 5:
+                catText = getString(R.string.random);
+                break;
+
+        }
+
+        return catText;
+    }
+
+    private String getLevelText() {
+        String levelText = "";
+
+        switch (max) {
+            case 10:
+                levelText = getString(R.string.easy);
+                break;
+            case 15:
+                levelText = getString(R.string.medium);
+                break;
+            case 20:
+                levelText = getString(R.string.hard);
+                break;
+            case 25:
+                levelText = getString(R.string.expert);
+                break;
+
+        }
+
+        return levelText;
     }
 }

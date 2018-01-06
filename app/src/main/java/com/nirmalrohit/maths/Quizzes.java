@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -28,9 +31,25 @@ public class Quizzes extends AppCompatActivity {
         getSupportActionBar().setCustomView(textView);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main_score, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        Intent intent = new Intent(Quizzes.this, ProgressCard.class);
+        startActivity(intent);
+
+        return true;
+    }
+
     public void selectQuizModule(View view) {
         int index = Integer.parseInt( view.getTag().toString() );
-        Intent intent;
 
         dialog = new Level(this, index, true);
         dialog.show();

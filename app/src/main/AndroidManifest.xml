@@ -6,15 +6,15 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:largeHeap="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
             android:resizeableActivity="false"
-            android:theme="@style/Theme.AppCompat.DayNight"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.DayNight">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,19 +30,26 @@
         <activity
             android:name=".TimesTables"
             android:label="@string/title_activity_times_tables"
-            android:theme="@style/AppTheme.NoActionBar"
             android:resizeableActivity="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Quizzes"
-            android:theme="@style/Theme.AppCompat.DayNight"
             android:label="@string/select_quiz_category"
             android:resizeableActivity="false"
-            android:screenOrientation="portrait" />
-        <activity android:name=".QuizResult"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.DayNight" />
+        <activity
+            android:name=".QuizResult"
             android:resizeableActivity="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ProgressCard"
+            android:resizeableActivity="false"
+            android:label="@string/your_progress_card"
+            android:theme="@style/Theme.AppCompat.DayNight"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
