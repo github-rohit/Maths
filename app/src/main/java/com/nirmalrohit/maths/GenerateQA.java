@@ -142,14 +142,14 @@ public class GenerateQA {
 
             if (i == correctAnsIndex) {
                 num = answer;
-            } else if (questionType != 3 || ansLen == 1) {
+            } else if (questionType == 2 || ansLen == 1) {
                 num = answer + random.nextInt(MAX_ANS) - random.nextInt(MAX_ANS);
 
                 while (num == answer || answers.indexOf(num) != -1 || num < 0) {
                     num = answer + random.nextInt(MAX_ANS) - random.nextInt(MAX_ANS);
                 }
-            } else if (questionType == 3) {
-                num = getMultipleAnswer(answer, ansLen);
+            } else {
+                num = getMultiDigitAnswer(answer, ansLen);
             }
 
             answers.add(i, num);
@@ -182,7 +182,7 @@ public class GenerateQA {
         QAHashMap.put("question", question.clone());
         QAHashMap.put("answers", answers.clone());
         QAHashMap.put("correctAnswer", answers.get(correctAnsIndex));
-        
+
         return QAHashMap;
     }
 
@@ -335,7 +335,7 @@ public class GenerateQA {
         return answer;
     }
 
-    private int getMultipleAnswer (int answer, int ansLen) {
+    private int getMultiDigitAnswer (int answer, int ansLen) {
         int num = 0;
         int digit = 10;
         int ran = random.nextInt(2);
@@ -356,7 +356,10 @@ public class GenerateQA {
 
         while (answers.indexOf(num) != -1 ||   num < 0 || curLen != ansLen ) {
             curLen = String.valueOf(num).length();
-            ++inc;
+
+            if (inc <= 3) {
+                ++inc;
+            }
 
             if (num < 0 || curLen < ansLen) {
                 ran = 1;
